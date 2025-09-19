@@ -50,9 +50,154 @@ This project's main contributions are:
     \item The integration of these measurements with an extensive database of clothing sizes to provide customized size recommendations.
 \end{itemize}
 
-The rest of this paper has the following structure: Section 2 explains the project architecture and frameworks that we use, including image processing, human pose detection, and calculating body size method. Section 3 presents our machine learning model comparison methodology and results. The following section represents our results, evaluating the measurement accuracy and limitations. Section 5 discusses some improvements that we planned and outlines some future work to increase the accuracy of both body size measurement process and size recommendation process. The final section gives the conclusion of our paper by summarizing all the contents and our effort in this project, also discussing the impact of this for the online fashion retail industry.
+The rest of this paper has the following structure: Section 2 explains the project architecture and frameworks that we use, including image processing, human pose detection, and calculating body size method. The following section represents our results, evaluating the measurement accuracy and limitations. Section 4 discusses some improvements that we planned and outlines some future work to increase the accuracy of both body size measurement process and size recommendation process. The final section gives the conclusion of our paper by summarizing all the contents and our effort in this project, also discussing the impact of this for the online fashion retail industry.
+\section{Related Work}
 
-// ...existing code for sections 2-3...
+In this section, we review recent research in three major areas that are relevant to our study: YOLO-based human detection and pose estimation, logistic regression and classical statistical modeling, and clothing size estimation for fashion applications. Each of these research streams provides insights that contribute to the development of automated sizing systems, while also presenting limitations that motivate our proposed approach.
+
+\subsection{YOLO-Based Human Detection and Pose Estimation}
+
+The YOLO family of models has become a cornerstone for real-time object detection due to its balance between speed and accuracy. In recent years, multiple improvements have been proposed to enhance YOLO for challenging environments. For example, CST-YOLO introduced convolutional and transformer-based modules to boost detection performance for small-scale objects~\cite{ref9}, while lightweight versions such as YOLOv7-tiny~\cite{ref10} demonstrated the feasibility of deploying detection models on resource-constrained devices without sacrificing significant accuracy. Other works, such as the improved YOLOv7 for obscured pedestrian detection~\cite{ref11} and YOLO-RSFM~\cite{ref12}, extended the model with attention mechanisms and transformer decoder heads to improve robustness against occlusion and scale variations.
+
+These studies highlight YOLO’s flexibility and its potential beyond conventional object detection. However, most research has focused on general-purpose detection tasks rather than directly estimating anthropometric measurements. In our work, we leverage YOLOv11 not only for object detection but specifically for pose landmark extraction, enabling the computation of precise body measurements from multi-view images.
+
+\subsection{Logistic Regression and Statistical Modeling}
+
+Parallel to advancements in deep learning, logistic regression continues to serve as a reliable statistical method for classification tasks. Its interpretability and efficiency make it an attractive choice, especially when categorical outputs are required. Recent works have investigated ways to enrich logistic regression models with additional data and features, thereby improving their robustness and predictive capacity~\cite{ref14}. Other studies have emphasized model selection strategies~\cite{ref15}, comparing criteria such as AIC and BIC, and exploring the trade-off between model complexity and generalization performance. Furthermore, in the fashion domain, regression-based approaches have been employed to predict missing body measurements from partial inputs, demonstrating the continued relevance of statistical models~\cite{ref13}.
+
+While these works highlight the versatility of logistic regression, most applications remain either theoretical or focused on general data problems. Few have considered its integration with computer vision-based feature extraction pipelines. In contrast, our approach employs logistic regression as the final mapping stage, translating continuous anthropometric features extracted from images into discrete clothing size categories.
+
+\subsection{Clothing Size Estimation and Fashion Applications}
+
+The fashion industry has also seen growing interest in body size prediction and clothing recommendation systems. One line of research focuses on 2D image-based estimation. For instance, CNN-based T-shirt size prediction systems~\cite{ref16} have explored body contour detection combined with keypoint estimation, achieving moderate accuracy but struggling with variations in pose, camera distance, and clothing texture. Another direction relies on advanced 3D body scanning technologies~\cite{ref17}, which allow highly accurate measurements and clustering of body shapes into size groups. Although precise, these methods require specialized equipment, limiting their scalability in consumer applications.
+
+Recent works have attempted to bridge this gap by exploring hybrid approaches, such as combining pose estimation with limited anthropometric data, yet accuracy often falls short of the standards needed for reliable e-commerce deployment. The tension between practicality (2D smartphone images) and accuracy (3D scanning systems) remains an open challenge in this domain.
+
+\subsection{Summary}
+
+Overall, prior research demonstrates the individual strengths of YOLO-based detection models, logistic regression, and specialized size estimation systems. However, these approaches often operate in isolation: YOLO is rarely applied to measurement estimation, logistic regression is usually studied in abstract settings, and size estimation methods either rely on costly hardware or suffer from limited accuracy in 2D environments. Our work contributes by integrating these streams into a unified pipeline. Specifically, we adopt YOLOv11 for robust multi-view pose landmark extraction and apply logistic regression to map estimated body dimensions to standardized clothing sizes. This design achieves a practical balance between accuracy and accessibility, offering a scalable solution for real-world online shopping platforms.
+
+
+\section{Background}
+
+The rapid growth of online clothing shopping has led to a need for automated systems that measure the human body size of customers to recommend the most suitable clothing size. We propose an approach based on knowledge in the fields of computer vision, human pose estimation, and statistical modeling, and combine image processing libraries such as YOLOv11 and OpenCV to simplify the measurement process.
+
+\subsection{Core Definitions and Concepts}
+
+\subsubsection{Human Pose Detection}
+This is a part of computer vision that involves recognizing and roughly locating the major joints of the body (e.g., shoulders, elbows, waist, etc.) from images or video streams.
+
+Pose generation techniques, such as those implemented in YOLOv11, use convolutional neural networks (CNNs) to predict a set of heatmaps or keypoint maps, each corresponding to one anatomical landmark. By training on large datasets of annotated human poses, the network learns to extract spatial features—like limb orientation, joint appearance, and body silhouette—and to output precise coordinate estimates for each joint in real time.
+
+These techniques are useful because:
+\begin{itemize}
+  \item \textbf{Real-time feedback:} The high processing speed of single-stage CNNs (one forward pass per frame) enables applications such as live fitness coaching, gesture-based interfaces, and interactive gaming without perceptible lag.
+  \item \textbf{Robustness to variation:} Deep convolutional filters automatically learn to handle different viewpoints, clothing, lighting, and partial occlusions, making pose detection reliable across diverse environments.
+  \item \textbf{Downstream analytics:} Exact joint coordinates allow computation of angles, distances, and movement trajectories, which power higher-level tasks like activity recognition, ergonomic assessment, rehabilitation monitoring, and sports performance analysis.
+  \item \textbf{Personalization:} In our clothing-size recommendation system, precise measurements (e.g., shoulder width, arm length) extracted from live video ensure that suggested sizes match each user's unique body proportions, reducing returns and improving customer satisfaction.
+\end{itemize}
+
+\subsubsection{YOLOv11}
+YOLO (short for "You Only Look Once") is a real-time object detection system that uses convolutional neural networks to detect and localize objects in images and video streams. It was originally introduced by Joseph Redmon and has since been further developed by the computer vision community. YOLO is well known for its speed and efficiency, making it suitable for real-time applications on both high-end devices and mobile platforms \cite{ref5}. Although YOLO was primarily designed for object detection, its architecture can be adapted for other tasks such as human pose estimation. In our application, a variant of YOLO is employed to automatically extract precise body measurements from a live camera stream, which then serve as the basis for generating personalized clothing size recommendations.
+
+\subsubsection{Logistic Regression}
+Logistic regression is a core statistical classification method that models the probability of a categorical outcome given one or more predictor variables. In our system, we use it to map continuous body measurements (e.g., shoulder width, waist circumference) into discrete clothing size categories (Small, Medium, Large, etc.).
+
+\textbf{Binary Logistic Function.} For the simplest case of two classes (e.g.\ "Medium" vs.\ "Not Medium"), the model assumes
+\begin{equation}
+P(Y = 1 \mid \mathbf{x}) = \sigma(z) = \frac{1}{1 + e^{-z}},
+\end{equation}
+where
+\begin{equation}
+z = \beta_{0} + \beta_{1} x_{1} + \cdots + \beta_{n} x_{n},
+\end{equation}
+where
+\begin{itemize}
+  \item $\mathbf{x} = (x_{1},\ldots,x_{n})$ is the feature vector of measured dimensions.
+  \item $\beta_{0}$ is the intercept (bias) term, shifting the decision boundary.
+  \item $\beta_{i}$ is the weight corresponding to feature $x_{i}$, indicating how strongly $x_i$ influences the log-odds.
+  \item $\sigma(\cdot)$ is the logistic (sigmoid) function, which "squashes" real valued $z$ into the interval $(0,1)$.
+\end{itemize}
+We interpret $P(Y=1\mid \mathbf{x})>0.5$ (or another chosen threshold) as predicting class "1."
+
+\textbf{Multinomial Extension.} To handle $K>2$ size categories simultaneously, we generalize to
+\begin{equation}
+P(Y=k \mid \mathbf{x}) = \frac{\exp\big(\beta_{k0} + \boldsymbol{\beta}_{k}^{T}\mathbf{x}\big)}{\displaystyle\sum_{j=1}^{K}\exp\big(\beta_{j0} + \boldsymbol{\beta}_{j}^{T}\mathbf{x}\big)}, \quad k = 1,\ldots,K,
+\end{equation}
+where each class $k$ has its own parameter vector $(\beta_{k0}, \boldsymbol{\beta}_{k})$. The predicted size is the $k$ with the highest posterior probability.
+
+\textbf{Parameter Estimation.} All parameters $\{\beta_{k0},\boldsymbol{\beta}_{k}\}$ are learned by maximizing the regularized log-likelihood on a labeled training set:
+\begin{equation}
+\mathcal{L}(\boldsymbol{\beta}) = \sum_{i=1}^{N}\sum_{k=1}^{K} \mathbb{I}(y^{(i)}=k)\,\ln P(Y=k\mid \mathbf{x}^{(i)}) - \frac{\lambda}{2}\sum_{k=1}^{K}\|\boldsymbol{\beta}_{k}\|_{2}^{2},
+\end{equation}
+where $\lambda$ controls the strength of $L_{2}$ regularization to prevent overfitting.
+
+\textbf{Interpretation of Parameters.}
+\begin{itemize}
+  \item A positive coefficient $\beta_{ki}$ means that increasing feature $x_{i}$ raises the log odds of class $k$ relative to the baseline.
+  \item The magnitude $|\beta_{ki}|$ reflects how strongly $x_i$ influences the probability for size $k$.
+  \item The intercept $\beta_{k0}$ shifts the model's bias toward or away from class $k$ when all $x_i=0$ (after normalization).
+\end{itemize}
+
+In our application, the input $\mathbf{x}$ is the scaled set of body measurements produced by YOLOv11, and the trained logistic model outputs—for each size category—the probability that the measurements belong to that category. We then recommend the size with maximum probability, optionally enforcing a minimum confidence threshold (e.g.\ 0.7) to prompt the user for retakes if the classification is uncertain.
+
+\subsubsection{Random Forest}
+Random Forest \cite{ref18} is an ensemble learning algorithm that builds a collection of decision trees and aggregates their predictions to improve generalization. Each tree is trained on a bootstrap sample of the training data, and at each split only a random subset of features is considered. This randomness reduces correlation between trees, leading to lower variance compared to a single decision tree. 
+
+For classification, the final prediction is obtained by majority voting across all trees:
+\begin{equation}
+\hat{y} = \mathrm{mode}\{h_{1}(\mathbf{x}), h_{2}(\mathbf{x}), \ldots, h_{T}(\mathbf{x})\},
+\end{equation}
+where $h_{t}(\mathbf{x})$ is the class prediction of tree $t$, and $T$ is the total number of trees. 
+
+Random Forests are robust to noise, can capture nonlinear feature interactions, and naturally handle multi-class classification. In our context, they provide a strong nonparametric baseline for mapping anthropometric features into clothing size categories.
+
+\subsubsection{Support Vector Machine (SVM)}
+Support Vector Machine \cite{ref19} is a margin-based classifier that seeks a hyperplane separating classes with maximum margin. For linearly separable data, the decision function is
+\begin{equation}
+f(\mathbf{x}) = \mathrm{sign}\big(\mathbf{w}^{T}\mathbf{x} + b\big),
+\end{equation}
+where $\mathbf{w}$ is the weight vector orthogonal to the hyperplane and $b$ is the bias. The optimization maximizes the margin $\frac{2}{\|\mathbf{w}\|}$ subject to classification constraints.
+
+To handle nonlinearity, kernel functions $\kappa(\mathbf{x}_{i},\mathbf{x}_{j})$ map inputs into a higher-dimensional space, allowing separation by a linear hyperplane there. Common kernels include polynomial and radial basis function (RBF). For multi-class size classification, strategies such as one-vs-one (OvO) or one-vs-rest (OvR) are applied. 
+
+SVMs are effective with high-dimensional data and small training sets, making them suitable for exploring the discriminative power of body measurements beyond logistic regression.
+
+\subsubsection{Extreme Gradient Boosting (XGBoost)}
+XGBoost \cite{ref20} is a scalable, high-performance implementation of gradient boosted decision trees. It builds an additive model of $M$ trees, where each new tree $f_{m}$ is trained to correct the residual errors of the ensemble so far:
+\begin{equation}
+\hat{y}^{(i)} = \sum_{m=1}^{M} f_{m}(\mathbf{x}^{(i)}), \quad f_{m} \in \mathcal{F},
+\end{equation}
+with $\mathcal{F}$ the space of regression trees. The objective combines a differentiable loss function $\ell$ and a regularization term $\Omega$:
+\begin{equation}
+\mathcal{L} = \sum_{i=1}^{N}\ell\big(y^{(i)}, \hat{y}^{(i)}\big) + \sum_{m=1}^{M}\Omega(f_{m}).
+\end{equation}
+This regularization penalizes tree complexity, helping to prevent overfitting. XGBoost uses second-order gradient information for more accurate optimization and incorporates techniques like shrinkage, subsampling, and column sampling for better generalization.
+
+For our clothing size prediction task, XGBoost offers state-of-the-art accuracy in tabular classification, effectively capturing complex interactions among anthropometric features.
+
+
+\subsubsection{Metrics for evaluate Model}
+Metrics refer to a set of numbers that provide information about a particular process or activity. They are essential for measuring performance and success in various fields, including business and data analysis. Metrics help organizations track progress, make informed decisions, and improve strategies for growth.
+\begin{itemize}
+    \item \textbf{Precision:} the proportion of correctly predicted positive samples out of all predicted positive samples. A high precision means fewer false positives, meaning the model shows a confidence in predictions.
+    \begin{equation} Precision = \frac{TP}{TP + FP} \end{equation}
+    \item \textbf{Recall:}  the proportion of correctly predicted positive samples out of all actual positive samples. A high recall means fewer false negatives, indicating the model detects most positive cases but may include some incorrect ones.
+     \begin{equation} Recall = \frac{TP}{TP + FN} \end{equation}
+     \item \textbf{F1-score:} the harmonic mean of Precision and Recall. A high F1-score requires both Precision and Recall to be high.
+     \begin{equation} F1 = 2 \times\frac{Precision\times Recall}{Precision + Recall} \end{equation}
+     \item \textbf{Weighted-Averaged F1-score:} a variant of the F1-score that takes class imbalance into account by weighting each class's F1-score according to its number of true instances in the dataset.
+     \begin{equation}F1_\text{weighted} = \sum_{i=1}^{3} w_iF1_i \end{equation}
+     \item \textbf{Accuracy:} The proportion of correctly predicted samples out of all samples. While useful, accuracy alone may be misleading for imbalanced datasets.
+     \begin{equation} Accuracy = \frac{TP + TN}{TP + TN + FP + FN} \end{equation}
+\end{itemize}
+\textit{*Note: TP - True positive, FP - False Positive, FN - False Negative}
+
+\subsection{Existing Theories}
+
+\subsubsection{Statistical Modeling with Logistic regression}
+Logistic regression provides a simple yet powerful tool for predicting unknown measurements based on known variables. In our system, it is used to classify body measurements into discrete size categories by leveraging the relationship between variables such as height and weight and categorical measures like chest or waist circumference. This approach enables us to deliver fast and reliable size recommendations.
+
 
 \section{Proposed Approach}
 
