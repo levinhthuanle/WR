@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  19 SEP 2025 21:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  19 SEP 2025 22:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -326,37 +326,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/DELL/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Citation `cst-yolo' on page 2 undefined on input line 59.
-
-
-LaTeX Warning: Citation `yolo7-tiny' on page 2 undefined on input line 59.
-
-
-LaTeX Warning: Citation `yolo7-pedestrian' on page 2 undefined on input line 59.
-
-
-LaTeX Warning: Citation `yolo-rsfm' on page 2 undefined on input line 59.
-
-
-
 [2]
-
-LaTeX Warning: Citation `data-enriched-lr' on page 3 undefined on input line 65.
-
-
-LaTeX Warning: Citation `model-selection-lr' on page 3 undefined on input line 65.
-
-
-LaTeX Warning: Citation `missing-measurements' on page 3 undefined on input line 65.
-
-
-LaTeX Warning: Citation `tshirt-size' on page 3 undefined on input line 71.
-
-
-LaTeX Warning: Citation `3d-scan' on page 3 undefined on input line 71.
-
-
-Overfull \hbox (1.87715pt too wide) in paragraph at lines 71--72
+Overfull \hbox (1.87715pt too wide) in paragraph at lines 70--71
 \OT1/cmr/m/n/10 have ex-plored body con-tour de-tec-tion com-bined with key-point es-ti-ma-tion, achiev-
  []
 
@@ -365,12 +336,12 @@ Overfull \hbox (1.87715pt too wide) in paragraph at lines 71--72
 [3]
 
 [4]
-Overfull \hbox (5.02628pt too wide) in paragraph at lines 103--104
+Overfull \hbox (5.02628pt too wide) in paragraph at lines 102--103
  \OT1/cmr/bx/n/10 Lo-gis-tic Re-gres-sion[] \OT1/cmr/m/n/10 Lo-gis-tic re-gres-sion is a core sta-tis-ti-cal clas-si-fi-ca-tion method
  []
 
 
-Overfull \hbox (12.07188pt too wide) in paragraph at lines 105--106
+Overfull \hbox (12.07188pt too wide) in paragraph at lines 104--105
 []\OT1/cmr/bx/n/10 Binary Lo-gis-tic Func-tion. \OT1/cmr/m/n/10 For the sim-plest case of two classes (e.g. "Medium"
  []
 
@@ -379,7 +350,7 @@ Overfull \hbox (12.07188pt too wide) in paragraph at lines 105--106
 [5]
 
 [6]
-Overfull \hbox (9.21767pt too wide) in paragraph at lines 170--171
+Overfull \hbox (9.21767pt too wide) in paragraph at lines 169--170
  \OT1/cmr/bx/n/10 Hu-man key points de-tec-tion[] \OT1/cmr/m/n/10 To de-tect hu-man key points, we use the YOLOv11
  []
 
@@ -389,7 +360,7 @@ Overfull \hbox (9.21767pt too wide) in paragraph at lines 170--171
 <images/Yolo2.png, id=40, 1436.36626pt x 630.85687pt>
 File: images/Yolo2.png Graphic file (type png)
 <use images/Yolo2.png>
-Package pdftex.def Info: images/Yolo2.png  used on input line 174.
+Package pdftex.def Info: images/Yolo2.png  used on input line 173.
 (pdftex.def)             Requested size: 208.27623pt x 91.46709pt.
 
 
@@ -397,7 +368,7 @@ Package pdftex.def Info: images/Yolo2.png  used on input line 174.
 <images/Method.png, id=46, 1013.7875pt x 358.33875pt>
 File: images/Method.png Graphic file (type png)
 <use images/Method.png>
-Package pdftex.def Info: images/Method.png  used on input line 215.
+Package pdftex.def Info: images/Method.png  used on input line 214.
 (pdftex.def)             Requested size: 208.27623pt x 73.61848pt.
 
 
@@ -405,10 +376,10 @@ Package pdftex.def Info: images/Method.png  used on input line 215.
 <images/confusionMatrix.png, id=51, 697.8572pt x 486.31688pt>
 File: images/confusionMatrix.png Graphic file (type png)
 <use images/confusionMatrix.png>
-Package pdftex.def Info: images/confusionMatrix.png  used on input line 259.
+Package pdftex.def Info: images/confusionMatrix.png  used on input line 258.
 (pdftex.def)             Requested size: 208.27623pt x 145.13928pt.
 
-Overfull \hbox (0.37718pt too wide) in paragraph at lines 288--289
+Overfull \hbox (0.37718pt too wide) in paragraph at lines 287--288
 \OT1/cmr/m/n/10 Our ex-per-i-men-tal eval-u-a-tion demon-strates that the com-bi-na-tion of guided smart-
  []
 
@@ -418,26 +389,28 @@ Overfull \hbox (0.37718pt too wide) in paragraph at lines 288--289
 
 [11 <./images/confusionMatrix.png>]
 
-[12]
+[12] (main.bbl
 
-[13] (main.aux)
+[13])
+
+[14] (main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3326 strings out of 468133
- 46272 string characters out of 5447550
- 460023 words of memory out of 5000000
- 31907 multiletter control sequences out of 15000+600000
- 637063 words of font info for 78 fonts, out of 8000000 for 9000
+ 3342 strings out of 468133
+ 46554 string characters out of 5447550
+ 460030 words of memory out of 5000000
+ 31919 multiletter control sequences out of 15000+600000
+ 637408 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,9n,65p,1390b,330s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (13 pages, 709797 bytes).
+ 57i,9n,65p,1390b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (14 pages, 727854 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
+ 140 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -49,26 +49,25 @@ This project's main contributions are:
 \end{itemize}
 
 The rest of this paper has the following structure: Section 2 explains the project architecture and frameworks that we use, including image processing, human pose detection, and calculating body size method. The following section represents our results, evaluating the measurement accuracy and limitations. Section 4 discusses some improvements that we planned and outlines some future work to increase the accuracy of both body size measurement process and size recommendation process. The final section gives the conclusion of our paper by summarizing all the contents and our effort in this project, also discussing the impact of this for the online fashion retail industry.
-
 \section{Related Work}
 
 In this section, we review recent research in three major areas that are relevant to our study: YOLO-based human detection and pose estimation, logistic regression and classical statistical modeling, and clothing size estimation for fashion applications. Each of these research streams provides insights that contribute to the development of automated sizing systems, while also presenting limitations that motivate our proposed approach.
 
 \subsection{YOLO-Based Human Detection and Pose Estimation}
 
-The YOLO family of models has become a cornerstone for real-time object detection due to its balance between speed and accuracy. In recent years, multiple improvements have been proposed to enhance YOLO for challenging environments. For example, CST-YOLO introduced convolutional and transformer-based modules to boost detection performance for small-scale objects \cite{cst-yolo}, while lightweight versions such as YOLOv7-tiny \cite{yolo7-tiny} demonstrated the feasibility of deploying detection models on resource-constrained devices without sacrificing significant accuracy. Other works, such as the improved YOLOv7 for obscured pedestrian detection \cite{yolo7-pedestrian} and YOLO-RSFM \cite{yolo-rsfm}, extended the model with attention mechanisms and transformer decoder heads to improve robustness against occlusion and scale variations.
+The YOLO family of models has become a cornerstone for real-time object detection due to its balance between speed and accuracy. In recent years, multiple improvements have been proposed to enhance YOLO for challenging environments. For example, CST-YOLO introduced convolutional and transformer-based modules to boost detection performance for small-scale objects~\cite{ref9}, while lightweight versions such as YOLOv7-tiny~\cite{ref10} demonstrated the feasibility of deploying detection models on resource-constrained devices without sacrificing significant accuracy. Other works, such as the improved YOLOv7 for obscured pedestrian detection~\cite{ref11} and YOLO-RSFM~\cite{ref12}, extended the model with attention mechanisms and transformer decoder heads to improve robustness against occlusion and scale variations.
 
 These studies highlight YOLO’s flexibility and its potential beyond conventional object detection. However, most research has focused on general-purpose detection tasks rather than directly estimating anthropometric measurements. In our work, we leverage YOLOv11 not only for object detection but specifically for pose landmark extraction, enabling the computation of precise body measurements from multi-view images.
 
 \subsection{Logistic Regression and Statistical Modeling}
 
-Parallel to advancements in deep learning, logistic regression continues to serve as a reliable statistical method for classification tasks. Its interpretability and efficiency make it an attractive choice, especially when categorical outputs are required. Recent works have investigated ways to enrich logistic regression models with additional data and features, thereby improving their robustness and predictive capacity \cite{data-enriched-lr}. Other studies have emphasized model selection strategies \cite{model-selection-lr}, comparing criteria such as AIC and BIC, and exploring the trade-off between model complexity and generalization performance. Furthermore, in the fashion domain, regression-based approaches have been employed to predict missing body measurements from partial inputs, demonstrating the continued relevance of statistical models \cite{missing-measurements}.
+Parallel to advancements in deep learning, logistic regression continues to serve as a reliable statistical method for classification tasks. Its interpretability and efficiency make it an attractive choice, especially when categorical outputs are required. Recent works have investigated ways to enrich logistic regression models with additional data and features, thereby improving their robustness and predictive capacity~\cite{ref14}. Other studies have emphasized model selection strategies~\cite{ref15}, comparing criteria such as AIC and BIC, and exploring the trade-off between model complexity and generalization performance. Furthermore, in the fashion domain, regression-based approaches have been employed to predict missing body measurements from partial inputs, demonstrating the continued relevance of statistical models~\cite{ref13}.
 
 While these works highlight the versatility of logistic regression, most applications remain either theoretical or focused on general data problems. Few have considered its integration with computer vision-based feature extraction pipelines. In contrast, our approach employs logistic regression as the final mapping stage, translating continuous anthropometric features extracted from images into discrete clothing size categories.
 
 \subsection{Clothing Size Estimation and Fashion Applications}
 
-The fashion industry has also seen growing interest in body size prediction and clothing recommendation systems. One line of research focuses on 2D image-based estimation. For instance, CNN-based T-shirt size prediction systems \cite{tshirt-size} have explored body contour detection combined with keypoint estimation, achieving moderate accuracy but struggling with variations in pose, camera distance, and clothing texture. Another direction relies on advanced 3D body scanning technologies \cite{3d-scan}, which allow highly accurate measurements and clustering of body shapes into size groups. Although precise, these methods require specialized equipment, limiting their scalability in consumer applications.
+The fashion industry has also seen growing interest in body size prediction and clothing recommendation systems. One line of research focuses on 2D image-based estimation. For instance, CNN-based T-shirt size prediction systems~\cite{ref16} have explored body contour detection combined with keypoint estimation, achieving moderate accuracy but struggling with variations in pose, camera distance, and clothing texture. Another direction relies on advanced 3D body scanning technologies~\cite{ref17}, which allow highly accurate measurements and clustering of body shapes into size groups. Although precise, these methods require specialized equipment, limiting their scalability in consumer applications.
 
 Recent works have attempted to bridge this gap by exploring hybrid approaches, such as combining pose estimation with limited anthropometric data, yet accuracy often falls short of the standards needed for reliable e-commerce deployment. The tension between practicality (2D smartphone images) and accuracy (3D scanning systems) remains an open challenge in this domain.
 
@@ -304,32 +303,8 @@ The experimental results have shown that the integration of advanced computer vi
 
 In summary, the system presented in this project provides a promising solution to the challenges of clothing size selection. Through the effective use of computer vision and statistical modeling, it not only enhances measurement accuracy but also contributes to improved customer satisfaction and reduced environmental impact. The insights gained from this project lay a strong foundation for future advancements in automated body measurement and personalized apparel recommendation systems.
 
-\begin{thebibliography}{8}
+\bibliographystyle{IEEEtran} 
+\bibliography{refs}
 
-\bibitem{ref1}
-Mayes, J.: Real-time clothing size estimation using body segmentation. Technical Disclosure Commons (2020). \url{https://www.tdcommons.org/dpubs_series/3177/}
-
-\bibitem{ref2}
-Thota, K.S.P., Suh, S., Zhou, B., Lukowicz, P.: Estimation of 3D body shape and clothing measurements from frontal- and side-view images. arXiv preprint arXiv:2205.14347 (2022)
-
-\bibitem{ref3}
-Zhang, Y., Li, Y., Zhang, J.: A proposal for clothing size recommendation system using Chinese online shopping malls: The new era of data. Applied Sciences 11(23), 11215 (2021)
-
-\bibitem{ref4}
-Trotter, C., Peleja, F., Dotti, D., de Santos, A.: Human body shape classification based on a single image. arXiv preprint arXiv:2301.12345 (2023)
-
-\bibitem{ref5}
-Lugaresi, C., Tang, F., Nash, H., et al.: YOLOv11: A framework for building perception pipelines. arXiv preprint arXiv:1906.08172 (2019)
-
-\bibitem{ref6}
-Hastie, T., Tibshirani, R., Friedman, J.: The elements of statistical learning: Data mining, inference, and prediction, 2nd edn. Springer (2009)
-
-\bibitem{ref7}
-Machine Learning Co Ban: Hoi quy Logistic. \url{https://machinelearningcoban.com/2017/01/27/logisticregression/} (2017)
-
-\bibitem{ref8}
-Xu, Z., Yu, J., Zhang, D., Xie, K.: Shopping online: E-commerce and household carbon emissions in China. Journal of Environmental Management 123621 (2024)
-
-\end{thebibliography}
 
 \end{document}

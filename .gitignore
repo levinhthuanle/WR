@@ -80,3 +80,37 @@ docker-compose.override.yml
 
 # FastAPI cache
 *.pid
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.run.xml
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.thm
+*.synctex
+# LaTeX build directory
+WR_Report/build/
+
+# LaTeX result directory (optional - comment out if you want to track PDFs)
+# WR_Report/result/
+
+# LaTeX temporary files
+*.auxlock
+*.figlist
+*.makefile
+*.tmp

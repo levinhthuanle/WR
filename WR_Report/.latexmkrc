@@ -7,9 +7,6 @@ $jobname = '%A';
 # Sử dụng pdflatex
 $pdf_mode = 1;
 
-# Hook để copy file PDF vào thư mục result sau khi build xong
-$success_cmd = 'if not exist "result" mkdir "result" & copy "build\\%R.pdf" "result\\%R.pdf"';
-
 # Tự động làm sạch file tạm khi build thành công
 $cleanup_mode = 1;
 
