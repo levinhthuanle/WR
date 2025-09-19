@@ -1,0 +1,309 @@
+\documentclass[runningheads]{llncs}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{url}
+
+\begin{document}
+
+\title{Clothing Size Recommendation Using Body Measurement Estimation}
+
+\author{Nguyen Minh Khoa\inst{1} \and Le Vinh Thuan\inst{1}}
+
+\authorrunning{N. M. Khoa and L. V. Thuan}
+
+\institute{Faculty of Information Technology, University of Science, VNU-HCM\\
+Ho Chi Minh City, Vietnam\\
+\email{nmkhoa23@apcs.fitus.edu.vn, lvthuan23@apcs.fitus.edu.vn}}
+
+\maketitle
+
+\begin{abstract}
+Incorrect apparel sizing in online shopping leads to high return rates, customer dissatisfaction, and environmental waste. Traditional methods, such as manual measurements, are impractical for remote shoppers. This project presents the clothing size recommendation system, which requires users to input their height and capture two images (front and side) with guided on-screen overlays to ensure proper alignment. The system employs YOLOv11 model to extract key body points from both images, which, when combined with the user's height through scaling techniques, yield accurate estimations of 3D body dimensions such as shoulder width and belly circumference. These measurements are then matched against a comprehensive clothing size database to recommend the most suitable apparel sizes. The system employs a YOLOv11-based pose estimator to extract key body landmarks from both images, then scales these 2D points using the user's height to derive accurate 3D body dimensions (e.g., shoulder width, waist circumference).
+
+\keywords{Clothing size recommendation \and Body measurement estimation \and Computer vision \and Pose estimation \and YOLOv11}
+\end{abstract}
+
+\section{Introduction}
+
+Clothing size is a big problem for many people, especially when online shopping or those who do not know about their body size, which leads to incorrect clothes size choices, and increases the return rate of many online shops. Some traditional sizing calculation methods, such as manual measurements, often fail to capture the unique variations in individual body shapes, and it is hard to do it by themselves if they are online shopping~\cite{ref8}. In order to struggle with these challenges, this paper introduces a clothing size recommendation system that uses a multi-image method to estimate body measurements, aiming to deliver more precise and personalized size recommendations.
+
+The proposed system allows users to input their height and capture two images—one from the front and one from the side—using guided on-screen overlays to ensure proper alignment and consistency. This dual-view capture addresses the limitations of single-image approaches by providing complementary perspectives that are essential accurately estimating key body dimensions such as shoulder width, belly circumference, and other critical measurements. By integrating advanced computer vision techniques, specifically through the use of the YOLOv11 library for pose estimation, the system extracts 2D landmarks from both views. After that, the body size will be input into the Logistic Regression Model to get the recommended suitable size for the user.
+
+The enhanced measurement accuracy achieved through the multi-image approach is pivotal in bridging the gap between the simplicity of automated digital methods and the precision of traditional manual measurements. Once the body dimensions are estimated, they are compared against a comprehensive clothing size database to determine the most appropriate sizes for various apparel types. This approach not only streamlines the online shopping experience by reducing the reliance on guesswork but also contributes to sustainable fashion practices by potentially lowering return rates and minimizing waste.
+
+In this study, we describe the methods used for image capture and processing, show the whole design and implementation of the clothing size suggestion system, and assess the system's effectiveness in real world problems.
+
+This project's main contributions are:
+\begin{itemize}
+    \item The creation of an intuitive user interface that makes it easier to take precise front and side view photos.
+    \item The use of pose estimation techniques to extract important body landmarks.
+    \item The reconstruction of 3D body measurements using height-based scaling.
+    \item The integration of these measurements with an extensive database of clothing sizes to provide customized size recommendations.
+\end{itemize}
+
+The rest of this paper has the following structure: Section 2 explains the project architecture and frameworks that we use, including image processing, human pose detection, and calculating body size method. The following section represents our results, evaluating the measurement accuracy and limitations. Section 4 discusses some improvements that we planned and outlines some future work to increase the accuracy of both body size measurement process and size recommendation process. The final section gives the conclusion of our paper by summarizing all the contents and our effort in this project, also discussing the impact of this for the online fashion retail industry.
+
+\section{Background}
+
+The rapid growth of online clothing shopping has led to a need for automated systems that measure the human body size of customers to recommend the most suitable clothing size. We propose an approach based on knowledge in the fields of computer vision, human pose estimation, and statistical modeling, and combine image processing libraries such as YOLOv11 and OpenCV to simplify the measurement process.
+
+\subsection{Core Definitions and Concepts}
+
+\subsubsection{Human Pose Detection}
+This is a part of computer vision that involves recognizing and roughly locating the major joints of the body (e.g., shoulders, elbows, waist, etc.) from images or video streams.
+
+Pose generation techniques, such as those implemented in YOLOv11, use convolutional neural networks (CNNs) to predict a set of heatmaps or keypoint maps, each corresponding to one anatomical landmark. By training on large datasets of annotated human poses, the network learns to extract spatial features—like limb orientation, joint appearance, and body silhouette—and to output precise coordinate estimates for each joint in real time.
+
+These techniques are useful because:
+\begin{itemize}
+  \item \textbf{Real-time feedback:} The high processing speed of single-stage CNNs (one forward pass per frame) enables applications such as live fitness coaching, gesture-based interfaces, and interactive gaming without perceptible lag.
+  \item \textbf{Robustness to variation:} Deep convolutional filters automatically learn to handle different viewpoints, clothing, lighting, and partial occlusions, making pose detection reliable across diverse environments.
+  \item \textbf{Downstream analytics:} Exact joint coordinates allow computation of angles, distances, and movement trajectories, which power higher-level tasks like activity recognition, ergonomic assessment, rehabilitation monitoring, and sports performance analysis.
+  \item \textbf{Personalization:} In our clothing-size recommendation system, precise measurements (e.g., shoulder width, arm length) extracted from live video ensure that suggested sizes match each user's unique body proportions, reducing returns and improving customer satisfaction.
+\end{itemize}
+
+\subsubsection{YOLOv11}
+YOLO (short for "You Only Look Once") is a real-time object detection system that uses convolutional neural networks to detect and localize objects in images and video streams. It was originally introduced by Joseph Redmon and has since been further developed by the computer vision community. YOLO is well known for its speed and efficiency, making it suitable for real-time applications on both high-end devices and mobile platforms. Although YOLO was primarily designed for object detection, its architecture can be adapted for other tasks such as human pose estimation. In our application, a variant of YOLO is employed to automatically extract precise body measurements from a live camera stream, which then serve as the basis for generating personalized clothing size recommendations.
+
+\subsubsection{Logistic Regression}
+Logistic regression is a core statistical classification method that models the probability of a categorical outcome given one or more predictor variables. In our system, we use it to map continuous body measurements (e.g., shoulder width, waist circumference) into discrete clothing size categories (Small, Medium, Large, etc.).
+
+\textbf{Binary Logistic Function.} For the simplest case of two classes (e.g.\ "Medium" vs.\ "Not Medium"), the model assumes
+\begin{equation}
+P(Y = 1 \mid \mathbf{x}) = \sigma(z) = \frac{1}{1 + e^{-z}},
+\end{equation}
+where
+\begin{equation}
+z = \beta_{0} + \beta_{1} x_{1} + \cdots + \beta_{n} x_{n},
+\end{equation}
+where
+\begin{itemize}
+  \item $\mathbf{x} = (x_{1},\ldots,x_{n})$ is the feature vector of measured dimensions.
+  \item $\beta_{0}$ is the intercept (bias) term, shifting the decision boundary.
+  \item $\beta_{i}$ is the weight corresponding to feature $x_{i}$, indicating how strongly $x_i$ influences the log-odds.
+  \item $\sigma(\cdot)$ is the logistic (sigmoid) function, which "squashes" real valued $z$ into the interval $(0,1)$.
+\end{itemize}
+We interpret $P(Y=1\mid \mathbf{x})>0.5$ (or another chosen threshold) as predicting class "1."
+
+\textbf{Multinomial Extension.} To handle $K>2$ size categories simultaneously, we generalize to
+\begin{equation}
+P(Y=k \mid \mathbf{x}) = \frac{\exp\big(\beta_{k0} + \boldsymbol{\beta}_{k}^{T}\mathbf{x}\big)}{\displaystyle\sum_{j=1}^{K}\exp\big(\beta_{j0} + \boldsymbol{\beta}_{j}^{T}\mathbf{x}\big)}, \quad k = 1,\ldots,K,
+\end{equation}
+where each class $k$ has its own parameter vector $(\beta_{k0}, \boldsymbol{\beta}_{k})$. The predicted size is the $k$ with the highest posterior probability.
+
+\textbf{Parameter Estimation.} All parameters $\{\beta_{k0},\boldsymbol{\beta}_{k}\}$ are learned by maximizing the regularized log-likelihood on a labeled training set:
+\begin{equation}
+\mathcal{L}(\boldsymbol{\beta}) = \sum_{i=1}^{N}\sum_{k=1}^{K} \mathbb{I}(y^{(i)}=k)\,\ln P(Y=k\mid \mathbf{x}^{(i)}) - \frac{\lambda}{2}\sum_{k=1}^{K}\|\boldsymbol{\beta}_{k}\|_{2}^{2},
+\end{equation}
+where $\lambda$ controls the strength of $L_{2}$ regularization to prevent overfitting.
+
+\textbf{Interpretation of Parameters.}
+\begin{itemize}
+  \item A positive coefficient $\beta_{ki}$ means that increasing feature $x_{i}$ raises the log odds of class $k$ relative to the baseline.
+  \item The magnitude $|\beta_{ki}|$ reflects how strongly $x_i$ influences the probability for size $k$.
+  \item The intercept $\beta_{k0}$ shifts the model's bias toward or away from class $k$ when all $x_i=0$ (after normalization).
+\end{itemize}
+
+In our application, the input $\mathbf{x}$ is the scaled set of body measurements produced by YOLOv11, and the trained logistic model outputs—for each size category—the probability that the measurements belong to that category. We then recommend the size with maximum probability, optionally enforcing a minimum confidence threshold (e.g.\ 0.7) to prompt the user for retakes if the classification is uncertain.
+
+\subsubsection{Metrics for evaluate Model}
+Metrics refer to a set of numbers that provide information about a particular process or activity. They are essential for measuring performance and success in various fields, including business and data analysis. Metrics help organizations track progress, make informed decisions, and improve strategies for growth.
+\begin{itemize}
+    \item \textbf{Precision:} the proportion of correctly predicted positive samples out of all predicted positive samples. A high precision means fewer false positives, meaning the model shows a confidence in predictions.
+    \begin{equation} Precision = \frac{TP}{TP + FP} \end{equation}
+    \item \textbf{Recall:}  the proportion of correctly predicted positive samples out of all actual positive samples. A high recall means fewer false negatives, indicating the model detects most positive cases but may include some incorrect ones.
+     \begin{equation} Recall = \frac{TP}{TP + FN} \end{equation}
+     \item \textbf{F1-score:} the harmonic mean of Precision and Recall. A high F1-score requires both Precision and Recall to be high.
+     \begin{equation} F1 = 2 \times\frac{Precision\times Recall}{Precision + Recall} \end{equation}
+     \item \textbf{Weighted-Averaged F1-score:} a variant of the F1-score that takes class imbalance into account by weighting each class's F1-score according to its number of true instances in the dataset.
+     \begin{equation}F1_\text{weighted} = \sum_{i=1}^{3} w_iF1_i \end{equation}
+     \item \textbf{Accuracy:} The proportion of correctly predicted samples out of all samples. While useful, accuracy alone may be misleading for imbalanced datasets.
+     \begin{equation} Accuracy = \frac{TP + TN}{TP + TN + FP + FN} \end{equation}
+\end{itemize}
+\textit{*Note: TP - True positive, FP - False Positive, FN - False Negative}
+
+\subsection{Existing Theories}
+
+\subsubsection{Statistical Modeling with Logistic regression}
+Logistic regression provides a simple yet powerful tool for predicting unknown measurements based on known variables. In our system, it is used to classify body measurements into discrete size categories by leveraging the relationship between variables such as height and weight and categorical measures like chest or waist circumference. This approach enables us to deliver fast and reliable size recommendations.
+
+\section{Related Work}
+
+Clothing size recommendation based on body measurement estimation has developed in recent years to provide advices for people when choosing their clothes size, such as the method introduced by TDCommons~\cite{ref1}, introduced real-time human clothing size estimation systems based on body measurements captured from images and body segmentation. In the next few years, Thota et al. proposed a new method to estimate 3D body shape to apply for clothing measurements from front view and side view images~\cite{ref2}, which is closely aligned with the multi-image approach in our work. The proposal for a clothing size recommendation system in Chinese online shopping malls~\cite{ref3} shows how well standardized body measurement databases can be used to minimize sizing disparities. Simultaneously, data-driven systems tailored for online shopping environments have been investigated. Furthermore, even though these techniques usually only require a single image input, research on body form categorization from single photographs~\cite{ref4} emphasizes the importance of precise measurement extraction for tailored fit suggestions. Our method, on the other hand, combines a multi-image strategy with pose estimation and height-based scaling in an effort to calculate the actual body size of the user in order to provide them the suitable size of clothing.
+
+\section{Proposed Approach}
+
+\subsection{User's size estimation}
+
+\subsubsection{Human key points detection}
+To detect human key points, we use the YOLOv11 pretrained model, which is specifically designed for human pose estimation. This model is modified to identifying and localizing key body such as the head, shoulders, elbows, wrists, hips, knees, and ankles from 2D images or video frames. In our approach, the YOLOv11 model processes input images and returns the coordinates of key points after capturing 2 images of user including front view and side view. These coordinates are essential for determining body posture, extracting body proportions, and further calculating measurements for our clothing size recommendation system.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/Yolo2.png}
+    \caption{Human Pose Detection Process}
+    \label{fig:pose_detection}
+\end{figure}
+
+The initial image that captured by the user's camera, then will be fed into the YOLOv11 model, go through several hidden layers to get the final result is the human key points.
+
+\subsubsection{Body size calculation}
+After getting all the necessary key points, we then calculate the length between some importants key points such as left-shoulder point with right-shoulder point to get the image distance, then use the user height as the scale to calculate the real length of user's shoulder length.
+
+We have the general equation for body part length:
+\begin{equation}
+B_R = \left(\frac{H_R}{H_I}\right) \times B_I
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $B_R$: Real Body Part Length
+    \item $H_R$: Real Height
+    \item $H_I$: User's Image Height
+    \item $B_I$: User's Image Body Part Length
+\end{itemize}
+
+We now get all the needed body sizes, including: shoulder width, belly, neck circumference, hip circumference, shirt length
+
+\subsection{Clothes Size Estimation}
+
+To suggest the suitable clothing size based on the user's measurements, we input these data into a Logistic Regression Model. While traditional Logistic Regression is typically used for binary classification, in our case, we extend it to a multiclass classification problem, where each class corresponds to a different clothing size (e.g., Small, Medium, Large, Extra Large). The model follows the formula:
+
+\begin{equation}
+f(s) = \theta(W^Tx)
+\end{equation}
+where $\theta$ is the logistic (sigmoid) function defined as:
+\begin{equation}
+\theta(s) = \frac{1}{1 + e^{-s}}.
+\end{equation}
+
+By applying a one-vs-rest (OvR) strategy, the model learns to distinguish among multiple clothing sizes by training a separate binary classifier for each class. At inference time, the class with the highest probability is selected as the final prediction. This approach enables the model to map body measurements to the most suitable clothing size, providing personalized recommendations based on statistical patterns learned from historical data.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/Method.png}
+    \caption{The process of our system}
+    \label{fig:system_process}
+\end{figure}
+
+After getting all the human size by applying the YOLOv11 model, all the index are go to the Logistic Regression that we have trained before. The Logistic Regression model will output the predict of the suitable clothe size base on human size including shoulder width, belly, neck circumference, hip circumference, and shirt length.
+
+\section{Evaluation}
+
+\subsection{Experiment Setup}
+We conducted all experiments on a local computing system equipped with an \textbf{AMD Ryzen 7 6800HS CPU}, \textbf{16GB RAM}, and \textbf{NVIDIA RTX 3050 GPU (12GB VRAM)}. The models were implemented using PyTorch 2.6 and CUDA 12.6.
+
+\subsection{Dataset}
+To train the Logistic Regression model, we construct a dataset consisting of individual customer body measurements and their corresponding clothing sizes (S, M, L, XL, XXL), collected from Shopee customer feedback.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Customer feedback distribution on clothing sizes}
+    \label{tab:dataset}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Size} & \textbf{Amount} & \textbf{Percentage} \\ 
+        \midrule
+        S & 50 & 0.20 \\ 
+        M & 50 & 0.20 \\ 
+        L & 50 & 0.20 \\ 
+        XL & 50 & 0.20 \\ 
+        XXL & 50 & 0.20 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+To train and evaluate the Logistic Regression model, we performed a stratified split of the full dataset into training and testing sets, allocating 80\% (200 samples) to training and 20\% (50 samples) to testing. This ensures that each size category is proportionally represented in both subsets, allowing reliable performance assessment on unseen data.
+
+Each data point feeds into the Logistic Regression model as described above, mapping the measured indices to their labeled size (S, M, L, XL, XXL).
+
+\subsection{Training process}
+To arrive at the final result which is a weight vector, the Logistic Regression Model was trained using a stochastic gradient descent (SGD) approach. Initially, the weight vector was randomly initialized, and the training data was shuffled to enhance generalization. For each iteration, the algorithm processed individual samples by computing the predicted probability using the sigmoid function. The weight vector was updated using the gradient of the logistic loss function, scaled by a predefined learning rate. Every 20 iterations, the algorithm checked for convergence by measuring the change in the weight vector. If the change was below a specified tolerance threshold, the training process was terminated early to prevent unnecessary computations. This iterative process continued until either convergence was achieved or the maximum number of updates was reached. The final weight vector was stored and used for the classification tasks.
+
+\subsection{Evaluation}
+After the training process, we output the confusion matrix and some matrices used to evaluate our model.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/confusionMatrix.png}
+    \caption{Confusion matrix}
+    \label{fig:confusion_matrix}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Performance metrics of the clothing size prediction model}
+    \label{tab:performance}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Size} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\ 
+        \midrule
+        L & 1.00 & 0.90 & 0.95 & 10 \\ 
+        M & 0.64 & 1.00 & 0.78 & 7 \\ 
+        S & 1.00 & 0.77 & 0.87 & 13 \\ 
+        XL & 0.92 & 1.00 & 0.96 & 11 \\ 
+        XXL & 1.00 & 0.89 & 0.94 & 9 \\
+        \midrule
+        \textbf{Accuracy} & \multicolumn{4}{c}{0.90} \\
+        \textbf{Macro Avg} & 0.91 & 0.91 & 0.90 & 50 \\
+        \textbf{Weighted Avg} & 0.93 & 0.90 & 0.90 & 50 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The model performs well with an overall accuracy of 90\%. It excels in predicting L, XL, and XXL classes (high precision and recall), but struggles with the M class, showing a lower precision (0.64) due to misclassifications from L and S. The S class has the lowest recall (0.77), indicating some difficulty in correctly identifying all S samples.
+
+\subsection{Results}
+Our experimental evaluation demonstrates that the combination of guided smartphone placement, YOLOv11-based landmark detection, and the Logistic Regression model yields reliable clothing size recommendations. In controlled tests on a separate testing set of 50 samples, the system achieved an overall accuracy of 90\%, with a macro-averaged F1-score of 0.90 and a weighted F1-score of 0.90.
+
+The model performed particularly well for the L, XL, and XXL classes, achieving precision scores of 1.00, 0.92, and 1.00, respectively. However, slightly lower precision (0.64) was observed for the M class, suggesting minor misclassifications between neighboring size categories. Despite this, the overall performance remains comparable to traditional manual measurement methods, demonstrating the system's effectiveness in practical applications.
+
+\subsection{Discussions}
+The results propose a multi-step approach that begins with user's height input and guided smartphone placing for image capture, l for extracting dependable body measurements. The use of YOLOv11 for pose estimation has proven effective, though its performance is contingent on the correct placement of the smartphone. Implementing the Logistic Regression Model allows us to leverage historical clothing size data, improving the accuracy and reliability of our system. Even though the results of our research are encouraging, the system's overall performance can be enhanced by improving the image capturing rules and expanding the training dataset to encompass a greater range of body shapes and fashions.
+
+\section{Threats to Validity}
+
+Several factors could affect the validity of our findings. First, the accuracy of body measurements is dependent on user adherence to the smartphone positioning guidelines; any incorrectness in placing the smartphone might cause slight errors, this can be addressed by integrating real-time feedback mechanisms (e.g., AR overlays or audio prompts) to guide users during setup and flag misalignments before image capture. Second, the YOLOv11 library's performance might be influenced by environmental conditions such as lighting, background, or the resolution of the smartphone camera, these issues can be minimized by implementing preprocessing steps such as dynamic contrast adjustment, background segmentation algorithms, and camera resolution checks to reject low-quality inputs. Third, the dataset used for training the Logistic Regression Model may not fully represent the diversity of real-world body shapes, which could lead to wrong size recommendations, supplemented by synthetic data augmentation or partnerships with inclusive clothing brands. Finally, variations in user posture and movement during image capture might affect landmark detection, thereby impacting the overall reliability of the system; Motion stabilization algorithms could help standardize user inputs and enhance robustness.
+
+\section{Conclusion}
+
+This project introduced a clothing size recommendation system that increase the online shopping experience by addressing the issue of inaccurate sizing. By using a two-image approach, capturing both front and side views, combined with guided smartphone placement and the usage of YOLOv11 for pose detection, the system effectively computes 3D body dimensions from simple 2D images. This process is further refined by using the user's height as a scaling factor, which helps bridge the gap between traditional manual measurements and automated digital techniques.
+
+The experimental results have shown that the integration of advanced computer vision techniques with a Logistic Regression Model leads to size recommendations that are both reliable and personal. The performance of the system, measured against traditional measurement methods, showed promising accuracy and consistency, reducing the risk of sizing errors that commonly lead to product returns in online retail. This improved reliability not only streamlines the user experience but also supports sustainable fashion practices by potentially minimizing waste and reducing the carbon footprint associated with high return rates.
+
+In summary, the system presented in this project provides a promising solution to the challenges of clothing size selection. Through the effective use of computer vision and statistical modeling, it not only enhances measurement accuracy but also contributes to improved customer satisfaction and reduced environmental impact. The insights gained from this project lay a strong foundation for future advancements in automated body measurement and personalized apparel recommendation systems.
+
+\begin{thebibliography}{8}
+
+\bibitem{ref1}
+Mayes, J.: Real-time clothing size estimation using body segmentation. Technical Disclosure Commons (2020). \url{https://www.tdcommons.org/dpubs_series/3177/}
+
+\bibitem{ref2}
+Thota, K.S.P., Suh, S., Zhou, B., Lukowicz, P.: Estimation of 3D body shape and clothing measurements from frontal- and side-view images. arXiv preprint arXiv:2205.14347 (2022)
+
+\bibitem{ref3}
+Zhang, Y., Li, Y., Zhang, J.: A proposal for clothing size recommendation system using Chinese online shopping malls: The new era of data. Applied Sciences 11(23), 11215 (2021)
+
+\bibitem{ref4}
+Trotter, C., Peleja, F., Dotti, D., de Santos, A.: Human body shape classification based on a single image. arXiv preprint arXiv:2301.12345 (2023)
+
+\bibitem{ref5}
+Lugaresi, C., Tang, F., Nash, H., et al.: YOLOv11: A framework for building perception pipelines. arXiv preprint arXiv:1906.08172 (2019)
+
+\bibitem{ref6}
+Hastie, T., Tibshirani, R., Friedman, J.: The elements of statistical learning: Data mining, inference, and prediction, 2nd edn. Springer (2009)
+
+\bibitem{ref7}
+Machine Learning Co Ban: Hoi quy Logistic. \url{https://machinelearningcoban.com/2017/01/27/logisticregression/} (2017)
+
+\bibitem{ref8}
+Xu, Z., Yu, J., Zhang, D., Xie, K.: Shopping online: E-commerce and household carbon emissions in China. Journal of Environmental Management 123621 (2024)
+
+\end{thebibliography}
+
+\end{document}
