@@ -140,7 +140,7 @@ where $\lambda$ controls the strength of $L_{2}$ regularization to prevent overf
 In our application, the input $\mathbf{x}$ is the scaled set of body measurements produced by YOLOv11, and the trained logistic model outputs—for each size category—the probability that the measurements belong to that category. We then recommend the size with maximum probability, optionally enforcing a minimum confidence threshold (e.g.\ 0.7) to prompt the user for retakes if the classification is uncertain.
 
 \subsubsection{Random Forest}
-Random Forest is an ensemble learning algorithm that builds a collection of decision trees and aggregates their predictions to improve generalization. Each tree is trained on a bootstrap sample of the training data, and at each split only a random subset of features is considered. This randomness reduces correlation between trees, leading to lower variance compared to a single decision tree. 
+Random Forest \cite{ref18} is an ensemble learning algorithm that builds a collection of decision trees and aggregates their predictions to improve generalization. Each tree is trained on a bootstrap sample of the training data, and at each split only a random subset of features is considered. This randomness reduces correlation between trees, leading to lower variance compared to a single decision tree. 
 
 For classification, the final prediction is obtained by majority voting across all trees:
 \begin{equation}
@@ -151,7 +151,7 @@ where $h_{t}(\mathbf{x})$ is the class prediction of tree $t$, and $T$ is the to
 Random Forests are robust to noise, can capture nonlinear feature interactions, and naturally handle multi-class classification. In our context, they provide a strong nonparametric baseline for mapping anthropometric features into clothing size categories.
 
 \subsubsection{Support Vector Machine (SVM)}
-Support Vector Machine is a margin-based classifier that seeks a hyperplane separating classes with maximum margin. For linearly separable data, the decision function is
+Support Vector Machine \cite{ref19} is a margin-based classifier that seeks a hyperplane separating classes with maximum margin. For linearly separable data, the decision function is
 \begin{equation}
 f(\mathbf{x}) = \mathrm{sign}\big(\mathbf{w}^{T}\mathbf{x} + b\big),
 \end{equation}
@@ -162,7 +162,7 @@ To handle nonlinearity, kernel functions $\kappa(\mathbf{x}_{i},\mathbf{x}_{j})$
 SVMs are effective with high-dimensional data and small training sets, making them suitable for exploring the discriminative power of body measurements beyond logistic regression.
 
 \subsubsection{Extreme Gradient Boosting (XGBoost)}
-XGBoost is a scalable, high-performance implementation of gradient boosted decision trees. It builds an additive model of $M$ trees, where each new tree $f_{m}$ is trained to correct the residual errors of the ensemble so far:
+XGBoost \cite{ref20} is a scalable, high-performance implementation of gradient boosted decision trees. It builds an additive model of $M$ trees, where each new tree $f_{m}$ is trained to correct the residual errors of the ensemble so far:
 \begin{equation}
 \hat{y}^{(i)} = \sum_{m=1}^{M} f_{m}(\mathbf{x}^{(i)}), \quad f_{m} \in \mathcal{F},
 \end{equation}
