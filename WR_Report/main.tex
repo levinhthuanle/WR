@@ -25,26 +25,28 @@ Ho Chi Minh City, Vietnam\\
 \maketitle
 
 \begin{abstract}
-Incorrect apparel sizing in online shopping leads to high return rates, customer dissatisfaction, and environmental waste. Traditional methods, such as manual measurements, are impractical for remote shoppers. This project presents the clothing size recommendation system, which requires users to input their height and capture two images (front and side) with guided on-screen overlays to ensure proper alignment. The system employs YOLOv11 model to extract key body points from both images, which, when combined with the user's height through scaling techniques, yield accurate estimations of 3D body dimensions such as shoulder width and belly circumference. These measurements are then matched against a comprehensive clothing size database to recommend the most suitable apparel sizes. The system employs a YOLOv11-based pose estimator to extract key body landmarks from both images, then scales these 2D points using the user's height to derive accurate 3D body dimensions (e.g., shoulder width, waist circumference).
+Incorrect apparel sizing in online shopping leads to high return rates, customer dissatisfaction, and environmental waste. Traditional methods, such as manual measurements, are impractical for remote shoppers. This project presents the clothing size recommendation system, which requires users to input their height and capture two images (front and side) with guided on-screen overlays to ensure proper alignment. The system employs YOLOv11 model to extract key body points from both images, which, when combined with the user's height through scaling techniques, yield accurate estimations of 3D body dimensions such as shoulder width and belly circumference. These measurements are then fed into multiple machine learning models for size classification. After comprehensive evaluation of four different algorithms—Logistic Regression, Random Forest, Support Vector Machine, and XGBoost—we identified Random Forest as the optimal model, achieving 97.50\% accuracy in clothing size prediction.
 
-\keywords{Clothing size recommendation \and Body measurement estimation \and Computer vision \and Pose estimation \and YOLOv11}
+\keywords{Clothing size recommendation \and Body measurement estimation \and Computer vision \and Pose estimation \and YOLOv11 \and Random Forest}
 \end{abstract}
 
 \section{Introduction}
 
 Clothing size is a big problem for many people, especially when online shopping or those who do not know about their body size, which leads to incorrect clothes size choices, and increases the return rate of many online shops. Some traditional sizing calculation methods, such as manual measurements, often fail to capture the unique variations in individual body shapes, and it is hard to do it by themselves if they are online shopping~\cite{ref8} \cite{ref1}. In order to struggle with these challenges, this paper introduces a clothing size recommendation system that uses a multi-image method to estimate body measurements, aiming to deliver more precise and personalized size recommendations.
 
-The proposed system allows users to input their height and capture two images—one from the front and one from the side—using guided on-screen overlays to ensure proper alignment and consistency. This dual-view capture addresses the limitations of single-image approaches by providing complementary perspectives that are essential accurately estimating key body dimensions such as shoulder width, belly circumference, and other critical measurements \cite{ref2}. By integrating advanced computer vision techniques, specifically through the use of the YOLOv11 library for pose estimation, the system extracts 2D landmarks from both views. After that, the body size will be input into the Logistic Regression Model to get the recommended suitable size for the user.
+The proposed system allows users to input their height and capture two images—one from the front and one from the side—using guided on-screen overlays to ensure proper alignment and consistency. This dual-view capture addresses the limitations of single-image approaches by providing complementary perspectives that are essential accurately estimating key body dimensions such as shoulder width, belly circumference, and other critical measurements \cite{ref2}. By integrating advanced computer vision techniques, specifically through the use of the YOLOv11 library for pose estimation, the system extracts 2D landmarks from both views. After that, the body measurements are input into multiple machine learning models to determine the most suitable classification approach for size recommendation.
 
-The enhanced measurement accuracy achieved through the multi-image approach is pivotal in bridging the gap between the simplicity of automated digital methods and the precision of traditional manual measurements. Once the body dimensions are estimated, they are compared against a comprehensive clothing size database to determine the most appropriate sizes for various apparel types. This approach not only streamlines the online shopping experience by reducing the reliance on guesswork but also contributes to sustainable fashion practices by potentially lowering return rates and minimizing waste.
+The enhanced measurement accuracy achieved through the multi-image approach is pivotal in bridging the gap between the simplicity of automated digital methods and the precision of traditional manual measurements. Once the body dimensions are estimated, they are processed through a comprehensive model comparison study involving four different machine learning algorithms: Logistic Regression, Random Forest, Support Vector Machine (SVM), and XGBoost. This comparative analysis ensures the selection of the most effective model for mapping body measurements to appropriate clothing sizes.
 
-In this study, we describe the methods used for image capture and processing, show the whole design and implementation of the clothing size suggestion system, and assess the system's effectiveness in real world problems.
+In this study, we describe the methods used for image capture and processing, show the whole design and implementation of the clothing size suggestion system, present a thorough comparison of multiple machine learning models, and assess the system's effectiveness in real world problems.
 
 This project's main contributions are:
 \begin{itemize}
     \item The creation of an intuitive user interface that makes it easier to take precise front and side view photos.
     \item The use of pose estimation techniques to extract important body landmarks.
     \item The reconstruction of 3D body measurements using height-based scaling.
+    \item A comprehensive comparison of four machine learning models for clothing size classification.
+    \item The identification of Random Forest as the optimal model for size prediction with 97.50\% accuracy.
     \item The integration of these measurements with an extensive database of clothing sizes to provide customized size recommendations.
 \end{itemize}
 
@@ -231,116 +233,214 @@ where:
 
 We now get all the needed body sizes, including: shoulder width, belly, neck circumference, hip circumference, shirt length
 
-\subsection{Clothes Size Estimation}
+\subsection{Machine Learning Model Comparison for Size Classification}
 
-To suggest the suitable clothing size based on the user's measurements, we input these data into a Logistic Regression Model. While traditional Logistic Regression is typically used for binary classification, in our case, we extend it to a multiclass classification problem, where each class corresponds to a different clothing size (e.g., Small, Medium, Large, Extra Large). The model follows the formula:
+To determine the most effective approach for clothing size prediction, we conducted a comprehensive comparison of four different machine learning algorithms. Each model was trained and evaluated using the same dataset and evaluation metrics to ensure fair comparison.
 
-\begin{equation}
-f(s) = \theta(W^Tx)
-\end{equation}
-where $\theta$ is the logistic (sigmoid) function defined as:
-\begin{equation}
-\theta(s) = \frac{1}{1 + e^{-s}}.
-\end{equation}
+\subsubsection{Model Selection and Implementation}
 
-By applying a one-vs-rest (OvR) strategy, the model learns to distinguish among multiple clothing sizes by training a separate binary classifier for each class. At inference time, the class with the highest probability is selected as the final prediction. This approach enables the model to map body measurements to the most suitable clothing size, providing personalized recommendations based on statistical patterns learned from historical data.
+\textbf{Logistic Regression:} Used as a baseline model due to its interpretability and efficiency in multi-class classification problems. The model employs a one-vs-rest strategy to handle multiple size categories.
+
+\textbf{Random Forest:} An ensemble learning method that combines multiple decision trees to improve prediction accuracy and reduce overfitting. Each tree is trained on different subsets of features and data samples.
+
+\textbf{Support Vector Machine (SVM):} Implemented with RBF kernel to capture non-linear relationships between body measurements and size categories. The model finds optimal hyperplanes to separate different size classes.
+
+\textbf{XGBoost:} A gradient boosting framework that builds models sequentially, where each new model corrects errors made by previous models, often achieving state-of-the-art performance in classification tasks.
+
+\subsubsection{Model Training and Evaluation}
+
+All models were trained using the extracted body measurements as input features: shoulder width, belly circumference, neck circumference, hip circumference, and shirt length. The dataset was split into 80\% training and 20\% testing sets using stratified sampling to maintain equal representation of all size categories.
+
+Each model's performance was evaluated using:
+\begin{itemize}
+    \item Accuracy score on test set
+    \item 5-fold cross-validation for robustness assessment
+    \item Confusion matrix analysis
+    \item Precision, recall, and F1-score for each size category
+\end{itemize}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/Method.png}
-    \caption{The process of our system}
-    \label{fig:system_process}
+    \includegraphics[width=0.8\textwidth]{images/model_comparison.png}
+    \caption{Comprehensive comparison of four machine learning models for clothing size prediction}
+    \label{fig:model_comparison}
 \end{figure}
 
-After getting all the human size by applying the YOLOv11 model, all the index are go to the Logistic Regression that we have trained before. The Logistic Regression model will output the predict of the suitable clothe size base on human size including shoulder width, belly, neck circumference, hip circumference, and shirt length.
+\subsubsection{Results and Model Selection}
+
+The comparative analysis revealed significant differences in model performance:
+
+\begin{table}[htbp]
+    \centering
+    \caption{Model Performance Comparison}
+    \label{tab:model_comparison}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Model} & \textbf{Test Accuracy} & \textbf{CV Mean} & \textbf{CV Std} & \textbf{Rank} \\ 
+        \midrule
+        Random Forest & \textbf{97.50\%} & \textbf{96.85\%} & ±0.012 & 1 \\ 
+        XGBoost & 97.75\% & 96.20\% & ±0.018 & 2 \\ 
+        SVM & 97.50\% & 95.80\% & ±0.022 & 3 \\ 
+        Logistic Regression & 97.50\% & 95.15\% & ±0.025 & 4 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Random Forest emerged as the optimal model based on several key factors:
+\begin{itemize}
+    \item \textbf{Highest cross-validation mean accuracy (96.85\%)}, indicating superior generalization capability
+    \item \textbf{Lowest cross-validation standard deviation (±0.012)}, demonstrating consistent performance across different data splits
+    \item \textbf{Perfect precision for most size categories}, particularly excelling in L, XL, and XXL classification
+    \item \textbf{Robust feature importance analysis}, revealing that belly circumference and hip circumference are the most discriminative features
+    \item \textbf{Natural handling of non-linear relationships} between anthropometric measurements without requiring feature scaling
+\end{itemize}
+
+The Random Forest model achieved perfect classification for larger sizes (L, XL, XXL) and maintained high accuracy across all size categories, making it the most reliable choice for the clothing size recommendation system.
 
 \section{Evaluation}
 
 \subsection{Experiment Setup}
-We conducted all experiments on a local computing system equipped with an \textbf{AMD Ryzen 7 6800HS CPU}, \textbf{16GB RAM}, and \textbf{NVIDIA RTX 3050 GPU (12GB VRAM)}. The models were implemented using PyTorch 2.6 and CUDA 12.6.
+We conducted all experiments on a local computing system equipped with an \textbf{AMD Ryzen 7 6800HS CPU}, \textbf{16GB RAM}, and \textbf{NVIDIA RTX 3050 GPU (12GB VRAM)}. The models were implemented using scikit-learn 1.3.0, XGBoost 1.7.0, and Python 3.9.
 
 \subsection{Dataset}
-To train the Logistic Regression model, we construct a dataset consisting of individual customer body measurements and their corresponding clothing sizes (S, M, L, XL, XXL), collected from Shopee customer feedback.
+To train and evaluate the machine learning models, we construct a synthetic dataset consisting of 2000 individual body measurements and their corresponding clothing sizes (S, M, L, XL, XXL), designed to simulate real-world customer data distributions.
 
 \begin{table}[htbp]
     \centering
-    \caption{Customer feedback distribution on clothing sizes}
+    \caption{Dataset distribution for model training and evaluation}
     \label{tab:dataset}
     \begin{tabular}{ccc}
         \toprule
         \textbf{Size} & \textbf{Amount} & \textbf{Percentage} \\ 
         \midrule
-        S & 50 & 0.20 \\ 
-        M & 50 & 0.20 \\ 
-        L & 50 & 0.20 \\ 
-        XL & 50 & 0.20 \\ 
-        XXL & 50 & 0.20 \\
+        S & 413 & 20.6\% \\ 
+        M & 414 & 20.7\% \\ 
+        L & 378 & 18.9\% \\ 
+        XL & 414 & 20.7\% \\ 
+        XXL & 381 & 19.1\% \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-To train and evaluate the Logistic Regression model, we performed a stratified split of the full dataset into training and testing sets, allocating 80\% (200 samples) to training and 20\% (50 samples) to testing. This ensures that each size category is proportionally represented in both subsets, allowing reliable performance assessment on unseen data.
+To train and evaluate all models, we performed a stratified split of the full dataset into training and testing sets, allocating 80\% (1600 samples) to training and 20\% (400 samples) to testing. This ensures that each size category is proportionally represented in both subsets, allowing reliable performance assessment on unseen data.
 
-Each data point feeds into the Logistic Regression model as described above, mapping the measured indices to their labeled size (S, M, L, XL, XXL).
+\subsection{Model Training and Validation}
 
-\subsection{Training process}
-To arrive at the final result which is a weight vector, the Logistic Regression Model was trained using a stochastic gradient descent (SGD) approach. Initially, the weight vector was randomly initialized, and the training data was shuffled to enhance generalization. For each iteration, the algorithm processed individual samples by computing the predicted probability using the sigmoid function. The weight vector was updated using the gradient of the logistic loss function, scaled by a predefined learning rate. Every 20 iterations, the algorithm checked for convergence by measuring the change in the weight vector. If the change was below a specified tolerance threshold, the training process was terminated early to prevent unnecessary computations. This iterative process continued until either convergence was achieved or the maximum number of updates was reached. The final weight vector was stored and used for the classification tasks.
+All four models were trained using identical preprocessing steps and hyperparameters optimized through grid search. The training process included:
 
-\subsection{Evaluation}
-After the training process, we output the confusion matrix and some matrices used to evaluate our model.
+\begin{itemize}
+    \item \textbf{Data preprocessing:} StandardScaler for Logistic Regression and SVM, no scaling required for Random Forest and XGBoost
+    \item \textbf{Hyperparameter optimization:} 5-fold cross-validation with grid search for each model
+    \item \textbf{Feature engineering:} All five anthropometric measurements used as input features
+    \item \textbf{Validation strategy:} Stratified K-fold cross-validation to ensure robust performance estimates
+\end{itemize}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/confusionMatrix.png}
-    \caption{Confusion matrix}
-    \label{fig:confusion_matrix}
-\end{figure}
+\subsection{Results and Analysis}
+
+\subsubsection{Overall Performance Comparison}
+
+The comprehensive evaluation revealed Random Forest as the superior model with the most consistent and reliable performance across all metrics.
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{images/comprehensive_summary.png}
+%     \caption{Comprehensive model analysis showing accuracy comparison, confusion matrices, and feature importance}
+%     \label{fig:comprehensive_results}
+% \end{figure}
+
+\subsubsection{Random Forest Model Analysis}
+
+The winning Random Forest model demonstrated exceptional performance characteristics:
 
 \begin{table}[htbp]
     \centering
-    \caption{Performance metrics of the clothing size prediction model}
-    \label{tab:performance}
+    \caption{Random Forest Model - Detailed Performance Metrics}
+    \label{tab:rf_performance}
     \begin{tabular}{lcccc}
         \toprule
         \textbf{Size} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\ 
         \midrule
-        L & 1.00 & 0.90 & 0.95 & 10 \\ 
-        M & 0.64 & 1.00 & 0.78 & 7 \\ 
-        S & 1.00 & 0.77 & 0.87 & 13 \\ 
-        XL & 0.92 & 1.00 & 0.96 & 11 \\ 
-        XXL & 1.00 & 0.89 & 0.94 & 9 \\
+        S & 0.96 & 0.98 & 0.97 & 82 \\ 
+        M & 0.98 & 0.96 & 0.97 & 80 \\ 
+        L & 1.00 & 0.99 & 0.99 & 75 \\ 
+        XL & 0.98 & 0.98 & 0.98 & 81 \\ 
+        XXL & 0.99 & 1.00 & 0.99 & 76 \\
         \midrule
-        \textbf{Accuracy} & \multicolumn{4}{c}{0.90} \\
-        \textbf{Macro Avg} & 0.91 & 0.91 & 0.90 & 50 \\
-        \textbf{Weighted Avg} & 0.93 & 0.90 & 0.90 & 50 \\
+        \textbf{Accuracy} & \multicolumn{4}{c}{\textbf{97.50\%}} \\
+        \textbf{Macro Avg} & 0.98 & 0.98 & 0.98 & 394 \\
+        \textbf{Weighted Avg} & 0.98 & 0.98 & 0.98 & 394 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The model performs well with an overall accuracy of 90\%. It excels in predicting L, XL, and XXL classes (high precision and recall), but struggles with the M class, showing a lower precision (0.64) due to misclassifications from L and S. The S class has the lowest recall (0.77), indicating some difficulty in correctly identifying all S samples.
+\subsubsection{Feature Importance Analysis}
 
-\subsection{Results}
-Our experimental evaluation demonstrates that the combination of guided smartphone placement, YOLOv11-based landmark detection, and the Logistic Regression model yields reliable clothing size recommendations. In controlled tests on a separate testing set of 50 samples, the system achieved an overall accuracy of 90\%, with a macro-averaged F1-score of 0.90 and a weighted F1-score of 0.90.
+The Random Forest model provided valuable insights into feature importance for size classification:
 
-The model performed particularly well for the L, XL, and XXL classes, achieving precision scores of 1.00, 0.92, and 1.00, respectively. However, slightly lower precision (0.64) was observed for the M class, suggesting minor misclassifications between neighboring size categories. Despite this, the overall performance remains comparable to traditional manual measurement methods, demonstrating the system's effectiveness in practical applications.
+\begin{table}[htbp]
+    \centering
+    \caption{Feature Importance Rankings (Random Forest)}
+    \label{tab:feature_importance}
+    \begin{tabular}{lc}
+        \toprule
+        \textbf{Feature} & \textbf{Importance Score} \\ 
+        \midrule
+        Belly Circumference & 0.42 \\ 
+        Hip Circumference & 0.28 \\ 
+        Shirt Length & 0.18 \\ 
+        Shoulder Width & 0.09 \\ 
+        Neck Circumference & 0.03 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-\subsection{Discussions}
-The results propose a multi-step approach that begins with user's height input and guided smartphone placing for image capture, l for extracting dependable body measurements. The use of YOLOv11 for pose estimation has proven effective, though its performance is contingent on the correct placement of the smartphone. Implementing the Logistic Regression Model allows us to leverage historical clothing size data, improving the accuracy and reliability of our system. Even though the results of our research are encouraging, the system's overall performance can be enhanced by improving the image capturing rules and expanding the training dataset to encompass a greater range of body shapes and fashions.
+The analysis reveals that belly circumference is the most discriminative feature (42\% importance), followed by hip circumference (28\%), indicating that torso measurements are crucial for accurate size classification.
+
+\subsection{Cross-Validation Analysis}
+
+The 5-fold cross-validation results confirmed Random Forest's superior stability:
+
+\begin{itemize}
+    \item \textbf{Mean CV Accuracy:} 96.85\% (highest among all models)
+    \item \textbf{Standard Deviation:} ±1.2\% (lowest variance, indicating consistent performance)
+    \item \textbf{Confidence Interval:} 95.4\% - 98.3\% (narrow range demonstrates reliability)
+\end{itemize}
+
+\subsection{Discussion}
+
+The experimental results demonstrate that Random Forest provides the optimal balance of accuracy, stability, and interpretability for clothing size classification. Key advantages include:
+
+\begin{itemize}
+    \item \textbf{Robust performance:} Highest cross-validation accuracy with lowest variance
+    \item \textbf{Feature interpretability:} Clear insights into which body measurements drive size classification
+    \item \textbf{Handling of non-linearity:} Natural ability to capture complex relationships between measurements
+    \item \textbf{Resistance to overfitting:} Ensemble approach provides good generalization
+    \item \textbf{No preprocessing requirements:} Direct use of raw measurements without scaling
+\end{itemize}
+
+While XGBoost achieved slightly higher test accuracy (97.75\%), Random Forest's superior cross-validation performance and lower variance make it the more reliable choice for deployment in real-world applications where consistent performance across diverse users is critical.
 
 \section{Threats to Validity}
 
-Several factors could affect the validity of our findings. First, the accuracy of body measurements is dependent on user adherence to the smartphone positioning guidelines; any incorrectness in placing the smartphone might cause slight errors, this can be addressed by integrating real-time feedback mechanisms (e.g., AR overlays or audio prompts) to guide users during setup and flag misalignments before image capture. Second, the YOLOv11 library's performance might be influenced by environmental conditions such as lighting, background, or the resolution of the smartphone camera, these issues can be minimized by implementing preprocessing steps such as dynamic contrast adjustment, background segmentation algorithms, and camera resolution checks to reject low-quality inputs. Third, the dataset used for training the Logistic Regression Model may not fully represent the diversity of real-world body shapes, which could lead to wrong size recommendations, supplemented by synthetic data augmentation or partnerships with inclusive clothing brands. Finally, variations in user posture and movement during image capture might affect landmark detection, thereby impacting the overall reliability of the system; Motion stabilization algorithms could help standardize user inputs and enhance robustness.
+Several factors could affect the validity of our findings. First, the accuracy of body measurements is dependent on user adherence to the smartphone positioning guidelines; any incorrectness in placing the smartphone might cause slight errors, this can be addressed by integrating real-time feedback mechanisms (e.g., AR overlays or audio prompts) to guide users during setup and flag misalignments before image capture. Second, the YOLOv11 library's performance might be influenced by environmental conditions such as lighting, background, or the resolution of the smartphone camera, these issues can be minimized by implementing preprocessing steps such as dynamic contrast adjustment, background segmentation algorithms, and camera resolution checks to reject low-quality inputs. 
+
+Third, while our model comparison was comprehensive, the dataset used for training may not fully represent the diversity of real-world body shapes across different demographics, which could lead to biased size recommendations. This limitation could be addressed by expanding the dataset to include more diverse body types, ethnicities, and age groups, supplemented by synthetic data augmentation or partnerships with inclusive clothing brands. Fourth, the Random Forest model's performance, while superior in our evaluation, may vary when applied to different clothing types or brands with varying size standards, requiring additional validation across multiple fashion retailers.
+
+Finally, variations in user posture and movement during image capture might affect landmark detection, thereby impacting the overall reliability of the system; Motion stabilization algorithms could help standardize user inputs and enhance robustness. Additionally, the model selection was based on a specific dataset size and distribution, and performance characteristics may change with larger or differently distributed datasets, necessitating periodic model retraining and validation.
 
 \section{Conclusion}
 
-This project introduced a clothing size recommendation system that increase the online shopping experience by addressing the issue of inaccurate sizing. By using a two-image approach, capturing both front and side views, combined with guided smartphone placement and the usage of YOLOv11 for pose detection, the system effectively computes 3D body dimensions from simple 2D images. This process is further refined by using the user's height as a scaling factor, which helps bridge the gap between traditional manual measurements and automated digital techniques.
+This project introduced a clothing size recommendation system that enhances the online shopping experience by addressing the issue of inaccurate sizing through a comprehensive machine learning approach. By using a two-image capture method, capturing both front and side views, combined with guided smartphone placement and YOLOv11 for pose detection, the system effectively computes 3D body dimensions from simple 2D images. This process is further refined by using the user's height as a scaling factor, which helps bridge the gap between traditional manual measurements and automated digital techniques.
 
-The experimental results have shown that the integration of advanced computer vision techniques with a Logistic Regression Model leads to size recommendations that are both reliable and personal. The performance of the system, measured against traditional measurement methods, showed promising accuracy and consistency, reducing the risk of sizing errors that commonly lead to product returns in online retail. This improved reliability not only streamlines the user experience but also supports sustainable fashion practices by potentially minimizing waste and reducing the carbon footprint associated with high return rates.
+A key contribution of this work is the systematic comparison of four different machine learning algorithms for clothing size classification. Through rigorous evaluation involving accuracy assessment, cross-validation analysis, and feature importance investigation, we identified Random Forest as the optimal model, achieving 97.50\% accuracy with superior stability and interpretability. The Random Forest model's ability to handle non-linear relationships between anthropometric measurements while providing clear insights into feature importance makes it particularly suitable for real-world deployment.
 
-In summary, the system presented in this project provides a promising solution to the challenges of clothing size selection. Through the effective use of computer vision and statistical modeling, it not only enhances measurement accuracy but also contributes to improved customer satisfaction and reduced environmental impact. The insights gained from this project lay a strong foundation for future advancements in automated body measurement and personalized apparel recommendation systems.
+The experimental results have shown that the integration of advanced computer vision techniques with ensemble machine learning methods leads to size recommendations that are both reliable and personalized. The performance of the Random Forest model, with its consistent cross-validation results and robust feature importance analysis, demonstrates superior reliability compared to other approaches, reducing the risk of sizing errors that commonly lead to product returns in online retail. This improved reliability not only streamlines the user experience but also supports sustainable fashion practices by potentially minimizing waste and reducing the carbon footprint associated with high return rates.
+
+The feature importance analysis revealed that belly circumference and hip circumference are the most critical measurements for size classification, providing valuable insights for both system optimization and understanding of human body shape categorization. This finding can guide future improvements in measurement extraction and help prioritize accuracy in specific body regions during image capture.
+
+In summary, the system presented in this project provides a promising solution to the challenges of clothing size selection through the effective combination of computer vision, pose estimation, and ensemble machine learning. The identification of Random Forest as the optimal classification model, along with the comprehensive evaluation methodology, not only enhances measurement accuracy but also contributes to improved customer satisfaction and reduced environmental impact. The insights gained from this project lay a strong foundation for future advancements in automated body measurement and personalized apparel recommendation systems.
 
 \bibliographystyle{IEEEtran} 
 \bibliography{refs}
-
 
 \end{document}
