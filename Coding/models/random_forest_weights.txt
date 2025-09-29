@@ -1,0 +1,53 @@
+================================================================================
+RANDOM FOREST MODEL WEIGHTS AND PARAMETERS
+================================================================================
+
+📋 MODEL INFORMATION:
+----------------------------------------
+Model Type: Random Forest Classifier
+Number of Trees: 100
+Max Depth: 10
+Random State: 42
+Number of Features: 5
+Classes: ['L', 'M', 'S', 'XL', 'XXL']
+Test Accuracy: 0.9850
+
+⭐ FEATURE IMPORTANCE (WEIGHTS):
+----------------------------------------
+ 1. Belly                    : 0.420887
+ 2. Hip Circumference        : 0.270320
+ 3. Shirt Length             : 0.178164
+ 4. Shoulder Width           : 0.088247
+ 5. Neck Circumference       : 0.042382
+
+Most Important Feature: Belly (0.4209)
+Least Important Feature: Neck Circumference (0.0424)
+
+🌳 INDIVIDUAL TREE STATISTICS:
+----------------------------------------
+Tree   1: Depth=10, Nodes=109, Leaves= 55
+Tree   2: Depth=10, Nodes=119, Leaves= 60
+Tree   3: Depth=10, Nodes=105, Leaves= 53
+Tree   4: Depth= 9, Nodes= 91, Leaves= 46
+Tree   5: Depth= 9, Nodes= 79, Leaves= 40
+...
+Average Tree Depth: 9.56
+Average Nodes per Tree: 99.06
+Average Leaves per Tree: 50.03
+
+🔍 SAMPLE DECISION RULES (Tree 1):
+----------------------------------------
+Rule 1: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length <= 66.81Shoulder Width <= 41.09Belly <= 77.10 THEN Size = S (samples: 164)
+Rule 2: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length <= 66.81Shoulder Width <= 41.09Belly > 77.10Belly <= 77.12 THEN Size = M (samples: 1)
+Rule 3: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length <= 66.81Shoulder Width <= 41.09Belly > 77.10Belly > 77.12 THEN Size = S (samples: 30)
+Rule 4: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length <= 66.81Shoulder Width > 41.09 THEN Size = M (samples: 7)
+Rule 5: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length > 66.81Hip Circumference <= 81.54Belly <= 77.64 THEN Size = S (samples: 26)
+Rule 6: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length > 66.81Hip Circumference <= 81.54Belly > 77.64Belly <= 77.74 THEN Size = M (samples: 1)
+Rule 7: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length > 66.81Hip Circumference <= 81.54Belly > 77.64Belly > 77.74 THEN Size = S (samples: 1)
+Rule 8: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length > 66.81Hip Circumference > 81.54Shoulder Width <= 37.29 THEN Size = S (samples: 1)
+Rule 9: IF Shoulder Width <= 43.21Belly <= 78.29Shirt Length > 66.81Hip Circumference > 81.54Shoulder Width > 37.29 THEN Size = M (samples: 22)
+Rule 10: IF Shoulder Width <= 43.21Belly > 78.29Hip Circumference <= 86.99Belly <= 85.73Neck Circumference <= 33.82 THEN Size = S (samples: 1)
+
+================================================================================
+END OF EXPORT
+================================================================================

@@ -1,0 +1,17 @@
+=== RANDOM FOREST MODEL INFO ===
+Accuracy: 0.9850
+Training samples: 1600
+Test samples: 400
+Features:
+  - Shoulder Width
+  - Belly
+  - Neck Circumference
+  - Hip Circumference
+  - Shirt Length
+
+Feature Importance:
+  Shoulder Width: 0.0882
+  Belly: 0.4209
+  Neck Circumference: 0.0424
+  Hip Circumference: 0.2703
+  Shirt Length: 0.1782

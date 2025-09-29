@@ -9,6 +9,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import xgboost as xgb
+import joblib
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -228,6 +230,121 @@ class ClothingSizePredictor:
         
         return best_model_name
     
+    def save_random_forest_model(self, model_path='models/random_forest_model.pkl', scaler_path='models/scaler.pkl'):
+        """Save Random Forest model and scaler to files"""
+        if 'Random Forest' not in self.models:
+            raise ValueError("Random Forest model not trained yet!")
+        
+        # Create models directory if it doesn't exist
+        os.makedirs('models', exist_ok=True)
+        
+        # Save Random Forest model
+        joblib.dump(self.models['Random Forest'], model_path)
+        print(f"✅ Random Forest model saved to: {model_path}")
+        
+        # Save scaler (even though RF doesn't need scaling, save for consistency)
+        joblib.dump(self.scaler, scaler_path)
+        print(f"✅ Scaler saved to: {scaler_path}")
+        
+        # Save feature names
+        feature_names = self.X_train.columns.tolist()
+        feature_path = 'models/feature_names.txt'
+        with open(feature_path, 'w') as f:
+            f.write('\n'.join(feature_names))
+        print(f"✅ Feature names saved to: {feature_path}")
+        
+        # Save model performance info
+        info_path = 'models/model_info.txt'
+        with open(info_path, 'w') as f:
+            f.write("=== RANDOM FOREST MODEL INFO ===\n")
+            f.write(f"Accuracy: {self.model_scores['Random Forest']:.4f}\n")
+            f.write(f"Training samples: {len(self.X_train)}\n")
+            f.write(f"Test samples: {len(self.X_test)}\n")
+            f.write("Features:\n")
+            for feature in feature_names:
+                f.write(f"  - {feature}\n")
+            
+            # Feature importance
+            rf_model = self.models['Random Forest']
+            f.write("\nFeature Importance:\n")
+            for i, importance in enumerate(rf_model.feature_importances_):
+                f.write(f"  {feature_names[i]}: {importance:.4f}\n")
+        
+        print(f"✅ Model info saved to: {info_path}")
+        
+    @staticmethod
+    def load_random_forest_model(model_path='models/random_forest_model.pkl'):
+        """Load Random Forest model from file"""
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"Model file not found: {model_path}")
+        
+        model = joblib.load(model_path)
+        print(f"✅ Random Forest model loaded from: {model_path}")
+        return model
+    
+    def export_model_weights(self, export_path='models/rf_weights_export.txt'):
+        """Export Random Forest model weights/parameters in readable format"""
+        if 'Random Forest' not in self.models:
+            raise ValueError("Random Forest model not trained yet!")
+        
+        rf_model = self.models['Random Forest']
+        
+        # Create export directory
+        os.makedirs('models', exist_ok=True)
+        
+        with open(export_path, 'w', encoding='utf-8') as f:
+            f.write("=" * 80 + "\n")
+            f.write("RANDOM FOREST MODEL WEIGHTS EXPORT\n")
+            f.write("=" * 80 + "\n\n")
+            
+            # Model parameters
+            f.write("MODEL PARAMETERS:\n")
+            f.write("-" * 40 + "\n")
+            f.write(f"Number of Estimators: {rf_model.n_estimators}\n")
+            f.write(f"Max Depth: {rf_model.max_depth}\n")
+            f.write(f"Random State: {rf_model.random_state}\n")
+            f.write(f"Number of Features: {rf_model.n_features_in_}\n")
+            f.write(f"Number of Classes: {rf_model.n_classes_}\n")
+            f.write(f"Classes: {list(rf_model.classes_)}\n\n")
+            
+            # Feature importance
+            f.write("FEATURE IMPORTANCE:\n")
+            f.write("-" * 40 + "\n")
+            feature_names = self.X_train.columns.tolist()
+            for i, (feature, importance) in enumerate(zip(feature_names, rf_model.feature_importances_)):
+                f.write(f"{i+1:2d}. {feature:20s}: {importance:.6f}\n")
+            f.write("\n")
+            
+            # Model performance
+            f.write("MODEL PERFORMANCE:\n")
+            f.write("-" * 40 + "\n")
+            f.write(f"Training Accuracy: {rf_model.score(self.X_train, self.y_train):.4f}\n")
+            f.write(f"Test Accuracy: {self.model_scores['Random Forest']:.4f}\n\n")
+            
+            # Tree structure summary (first few trees)
+            f.write("TREE STRUCTURE SUMMARY (First 3 Trees):\n")
+            f.write("-" * 50 + "\n")
+            for tree_idx in range(min(3, rf_model.n_estimators)):
+                tree = rf_model.estimators_[tree_idx]
+                f.write(f"\nTree {tree_idx + 1}:\n")
+                f.write(f"  Max Depth: {tree.tree_.max_depth}\n")
+                f.write(f"  Number of Nodes: {tree.tree_.node_count}\n")
+                f.write(f"  Number of Leaves: {np.sum(tree.tree_.children_left == -1)}\n")
+            
+            f.write("\n" + "=" * 80 + "\n")
+            f.write("END OF EXPORT\n")
+            f.write("=" * 80 + "\n")
+        
+        print(f"✅ Model weights exported to: {export_path}")
+        print(f"📊 Feature importance ranking:")
+        
+        # Print feature importance ranking to console
+        feature_importance = list(zip(feature_names, rf_model.feature_importances_))
+        feature_importance.sort(key=lambda x: x[1], reverse=True)
+        
+        for i, (feature, importance) in enumerate(feature_importance):
+            print(f"  {i+1}. {feature}: {importance:.4f}")
+    
     def plot_results(self):
         """Create visualization plots"""
         # Create figure with subplots
@@ -401,7 +518,20 @@ class ClothingSizePredictor:
         # Create visualizations
         self.plot_results()
         
+        # Save Random Forest model automatically
+        print("\n" + "=" * 60)
+        print("SAVING RANDOM FOREST MODEL")
+        print("=" * 60)
+        self.save_random_forest_model()
+        
+        # Export model weights
+        print("\n" + "=" * 60)
+        print("EXPORTING MODEL WEIGHTS")
+        print("=" * 60)
+        self.export_model_weights()
+        
         print(f"\n🎉 ANALYSIS COMPLETE! Best model: {best_model} 🎉")
+        print("📁 Model files saved in 'models/' directory")
         
         return best_model
 
@@ -420,11 +550,11 @@ def main():
     
     # Example measurements
     example_measurements = {
-        'Shoulder Width': 40.5,
+        'Shoulder Width': 44.0,
         'Belly': 85.2,
-        'Neck Circumference': 37.1,
+        'Neck Circumference': 41.0,
         'Hip Circumference': 90.3,
-        'Shirt Length': 70.5
+        'Shirt Length': 66.0
     }
     
     prediction, probabilities = predictor.predict_new_sample(example_measurements)

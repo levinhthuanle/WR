@@ -1,0 +1,47 @@
+================================================================================
+RANDOM FOREST MODEL WEIGHTS EXPORT
+================================================================================
+
+MODEL PARAMETERS:
+----------------------------------------
+Number of Estimators: 100
+Max Depth: 10
+Random State: 42
+Number of Features: 5
+Number of Classes: 5
+Classes: ['L', 'M', 'S', 'XL', 'XXL']
+
+FEATURE IMPORTANCE:
+----------------------------------------
+ 1. Shoulder Width      : 0.088247
+ 2. Belly               : 0.420887
+ 3. Neck Circumference  : 0.042382
+ 4. Hip Circumference   : 0.270320
+ 5. Shirt Length        : 0.178164
+
+MODEL PERFORMANCE:
+----------------------------------------
+Training Accuracy: 1.0000
+Test Accuracy: 0.9850
+
+TREE STRUCTURE SUMMARY (First 3 Trees):
+--------------------------------------------------
+
+Tree 1:
+  Max Depth: 10
+  Number of Nodes: 109
+  Number of Leaves: 55
+
+Tree 2:
+  Max Depth: 10
+  Number of Nodes: 119
+  Number of Leaves: 60
+
+Tree 3:
+  Max Depth: 10
+  Number of Nodes: 105
+  Number of Leaves: 53
+
+================================================================================
+END OF EXPORT
+================================================================================
