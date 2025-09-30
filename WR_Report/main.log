@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 20:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 20:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -325,15 +325,15 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (E:\MikTex\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
  (E:\MikTex\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
  (E:\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 34.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 33.
  (E:\MikTex\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
@@ -347,56 +347,56 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 [3]
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 150--153
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
 
 
 [5]
-Overfull \hbox (4.33304pt too wide) in paragraph at lines 209--211
+Overfull \hbox (4.33304pt too wide) in paragraph at lines 208--210
  \OT1/ptm/b/n/10 Ex-treme Gra-di-ent Boost-ing (XG-Boost):[] \OT1/ptm/m/n/10 The XG-Boost is a scal-able, high-performance
  []
 
 
 
 [6]
-<images/Yolo2.png, id=35, 1436.36626pt x 630.85687pt>
+<images/Yolo2.png, id=36, 1436.36626pt x 630.85687pt>
 File: images/Yolo2.png Graphic file (type png)
 <use images/Yolo2.png>
-Package pdftex.def Info: images/Yolo2.png  used on input line 234.
+Package pdftex.def Info: images/Yolo2.png  used on input line 233.
 (pdftex.def)             Requested size: 208.27623pt x 91.46709pt.
 
 
 [7]
-<images/model_comparison.png, id=41, 1232.9262pt x 692.3466pt>
+<images/model_comparison.png, id=42, 1232.9262pt x 692.3466pt>
 File: images/model_comparison.png Graphic file (type png)
 <use images/model_comparison.png>
-Package pdftex.def Info: images/model_comparison.png  used on input line 285.
+Package pdftex.def Info: images/model_comparison.png  used on input line 284.
 (pdftex.def)             Requested size: 277.69987pt x 155.94029pt.
 
 
 [8 <./images/Yolo2.png>]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 303.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 302.
  (E:\MikTex\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Overfull \hbox (0.33286pt too wide) in paragraph at lines 317--318
+Overfull \hbox (0.33286pt too wide) in paragraph at lines 316--317
 []\OT1/ptm/m/n/10 Natural han-dling of non-linear re-la-tion-ships be-tween an-thro-po-met-ric mea-sure-ments
  []
 
@@ -405,10 +405,10 @@ Overfull \hbox (0.33286pt too wide) in paragraph at lines 317--318
 [9 <./images/model_comparison.png>]
 
 [10]
-<images/result2.png, id=53, 1321.18594pt x 627.09282pt>
+<images/result2.png, id=54, 1321.18594pt x 627.09282pt>
 File: images/result2.png Graphic file (type png)
 <use images/result2.png>
-Package pdftex.def Info: images/result2.png  used on input line 385.
+Package pdftex.def Info: images/result2.png  used on input line 384.
 (pdftex.def)             Requested size: 347.12354pt x 164.76263pt.
 
 
@@ -432,10 +432,10 @@ Here is how much of TeX's memory you used:
  648829 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,10n,65p,994b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/MikTex/fonts/type1/urw/courier/ucrr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmb8a.pfb><E:/MikTex/fonts/type1/urw/times/utmr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (14 pages, 1796743 bytes).
+<E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/MikTex/fonts/type1/urw/courier/ucrr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmb8a.pfb><E:/MikTex/fonts/type1/urw/times/utmr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (14 pages, 1806054 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
