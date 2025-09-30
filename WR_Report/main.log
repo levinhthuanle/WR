@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 16:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 20:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -274,44 +274,50 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 ) (E:\MikTex\tex/latex/url\url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (E:\MikTex\tex/latex/multirow\multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip56
+\multirow@cntb=\count331
+\multirow@dima=\skip57
+\bigstrutjot=\dimen195
 ) (E:\MikTex\tex/latex/psnfss\times.sty
 Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 13.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 14.
  (E:\MikTex\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ) (E:\MikTex\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count331
+\l__color_backend_stack_int=\count332
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
  (E:\MikTex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count332
-\scratchdimen=\dimen195
+\scratchcounter=\count333
+\scratchdimen=\dimen196
 \scratchbox=\box105
-\nofMPsegments=\count333
-\nofMParguments=\count334
+\nofMPsegments=\count334
+\nofMParguments=\count335
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count335
-\MPscratchDim=\dimen196
-\MPnumerator=\count336
-\makeMPintoPDFobject=\count337
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen197
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
 \everyMPtoPDFconversion=\toks30
 ) (E:\MikTex\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -319,15 +325,15 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (E:\MikTex\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
  (E:\MikTex\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
  (E:\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 26.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 34.
  (E:\MikTex\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
@@ -341,56 +347,56 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 [3]
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 137--140
+Underfull \hbox (badness 10000) in paragraph at lines 150--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
 
 
 [5]
-Overfull \hbox (4.33304pt too wide) in paragraph at lines 194--196
+Overfull \hbox (4.33304pt too wide) in paragraph at lines 209--211
  \OT1/ptm/b/n/10 Ex-treme Gra-di-ent Boost-ing (XG-Boost):[] \OT1/ptm/m/n/10 The XG-Boost is a scal-able, high-performance
  []
 
 
 
 [6]
-<images/Yolo2.png, id=34, 1436.36626pt x 630.85687pt>
+<images/Yolo2.png, id=35, 1436.36626pt x 630.85687pt>
 File: images/Yolo2.png Graphic file (type png)
 <use images/Yolo2.png>
-Package pdftex.def Info: images/Yolo2.png  used on input line 219.
+Package pdftex.def Info: images/Yolo2.png  used on input line 234.
 (pdftex.def)             Requested size: 208.27623pt x 91.46709pt.
 
 
-[7 <./images/Yolo2.png>]
+[7]
 <images/model_comparison.png, id=41, 1232.9262pt x 692.3466pt>
 File: images/model_comparison.png Graphic file (type png)
 <use images/model_comparison.png>
-Package pdftex.def Info: images/model_comparison.png  used on input line 270.
+Package pdftex.def Info: images/model_comparison.png  used on input line 285.
 (pdftex.def)             Requested size: 277.69987pt x 155.94029pt.
 
 
-[8]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 289.
+[8 <./images/Yolo2.png>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 303.
  (E:\MikTex\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Overfull \hbox (0.33286pt too wide) in paragraph at lines 303--304
+Overfull \hbox (0.33286pt too wide) in paragraph at lines 317--318
 []\OT1/ptm/m/n/10 Natural han-dling of non-linear re-la-tion-ships be-tween an-thro-po-met-ric mea-sure-ments
  []
 
@@ -399,16 +405,16 @@ Overfull \hbox (0.33286pt too wide) in paragraph at lines 303--304
 [9 <./images/model_comparison.png>]
 
 [10]
-<images/result2.png, id=52, 1321.18594pt x 627.09282pt>
+<images/result2.png, id=53, 1321.18594pt x 627.09282pt>
 File: images/result2.png Graphic file (type png)
 <use images/result2.png>
-Package pdftex.def Info: images/result2.png  used on input line 361.
+Package pdftex.def Info: images/result2.png  used on input line 385.
 (pdftex.def)             Requested size: 347.12354pt x 164.76263pt.
 
 
-[11 <./images/result2.png>]
+[11]
 
-[12] (main.bbl
+[12 <./images/result2.png>] (main.bbl
 
 [13])
 
@@ -419,17 +425,17 @@ L3 programming layer <2025-08-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3474 strings out of 468133
- 48445 string characters out of 5447550
- 460228 words of memory out of 5000000
- 32031 multiletter control sequences out of 15000+600000
- 648518 words of font info for 91 fonts, out of 8000000 for 9000
+ 3544 strings out of 468133
+ 49592 string characters out of 5447550
+ 459274 words of memory out of 5000000
+ 32096 multiletter control sequences out of 15000+600000
+ 648829 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,994b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/MikTex/fonts/type1/urw/courier/ucrr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmb8a.pfb><E:/MikTex/fonts/type1/urw/times/utmr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (14 pages, 1786231 bytes).
+ 57i,10n,65p,994b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/MikTex/fonts/type1/urw/courier/ucrr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmb8a.pfb><E:/MikTex/fonts/type1/urw/times/utmr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (14 pages, 1797467 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
+ 136 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

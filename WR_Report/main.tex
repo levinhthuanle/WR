@@ -7,6 +7,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{url}
+\usepackage{multirow}
 \usepackage{times}
 \pagestyle{plain}
 
@@ -14,14 +15,21 @@
 
 \title{Improving Clothing Size Recommendation Using YOLOv11-Based Body Measurement and Ensemble Learning}
 
-\author{Le Vinh Thuan\inst{1} \and Nguyen Minh Khoa\inst{2} \and Nguyen Vinh Thanh\inst{3} \and \\ Nguyen Thi Dinh \inst{4}}
+\author{Le Vinh Thuan\inst{1} \and Nguyen Minh Khoa\inst{2} \and Nguyen Vinh Thanh\inst{3} \and Nguyen Thi Dinh \inst{4}}
 
-\authorrunning{N. M. Khoa, L. V. Thuan, N. V. Thanh, N. T. Dinh}
+\authorrunning{L. V. Thuan, N. M. Khoa, N. V. Thanh, N. T. Dinh}
 
-\institute{University of Science, VNU-HCM, Ho Chi Minh City, Vietnam \\
-\email{lvthuan23@apcs.fitus.edu.vn, nmkhoa23@apcs.fitus.edu.vn, nvthanhfit4805@gmail.com}
-\and Ho Chi Minh City University of Industry and Trade, Ho Chi Minh City, Vietnam \\
-\email{dinhnt@huit.edu.vn}}
+\institute{%
+$^{1,2,3}$Faculty of Information Technology, University of Science, VNU-HCM, Ho Chi Minh City, Vietnam 
+\and 
+{$^4$Ho Chi Minh City University of Industry and Trade, Ho Chi Minh City, Vietnam} 
+\\[6pt]
+$^1$\email{lvthuan23@apcs.fitus.edu.vn}, 
+$^2$\email{nmkhoa23@apcs.fitus.edu.vn}, 
+$^3$\email{nvthanhfit4805@gmail.com}, 
+$^4$\email{dinhnt@huit.edu.vn}
+}
+
 
 \maketitle
 
@@ -30,7 +38,7 @@
     Traditional methods, such as manual measurement or expensive 3D scanners, are impractical for online shoppers. 
     This paper proposes an improved clothing size recommendation system that estimates body measurements from two guided images (front and side). 
     The proposed system utilizes the YOLOv11 model to extract multi-view pose landmarks, 
-        which, when combined with user-provided height, enable the accurate reconstruction of 3D body dimensions, such as shoulder width and waist circumference. 
+        when combined with user-provided height, enable the accurate reconstruction of 3D body dimensions, such as shoulder width and waist circumference. 
     These measurements are then used as input features for ensemble learning models, including Random Forest and XGBoost, to classify clothing sizes. 
     Experimental results on a synthetic dataset of 2,000 samples demonstrate that the ensemble-based approaches achieve high accuracy (97.5\%) with high confidence across size categories. 
     The proposed framework provides a practical and scalable solution for e-commerce platforms, 
@@ -46,11 +54,15 @@ The rapid growth of online fashion shopping has significantly changed consumer b
 Many customers purchase garments without precise knowledge of their body dimensions, leading to incorrect sizing, increased return rates, customer dissatisfaction, and environmental waste \cite{ref8}. 
 Conventional approaches, such as manual self-measurement, are inconvenient for remote shoppers and fail to capture the variability of body shapes. 
 Although advanced solutions like 3D body scanners provide accurate measurements, they are costly, require specialized equipment, and lack scalability for large-scale e-commerce \cite{ref2}. 
-Therefore, there is a need for an application system that recommends clothing sizes based on the user's body image to increase reliability when choosing clothing sizes, is accessible, and is cost-effective.
+Therefore, there is a need for an application system that recommends clothing sizes based on the user's body image to increase reliability when choosing clothing sizes, 
+    is accessible, and cost-effective.
 
 An intelligent recommendation framework is introduced to overcome these challenges by integrating computer vision and machine learning. In this approach, users are first required to provide their height and then capture two guided images (front and side views) with overlay assistance to ensure proper alignment. Next, the YOLOv11-based pose estimation model is employed to extract landmarks from both images, and a height-scaling strategy is applied to reconstruct 3D body measurements such as shoulder width and waist circumference \cite{ref2}. These estimated dimensions subsequently serve as input features for multiple classification algorithms, with ensemble learning methods playing a central role in improving prediction reliability. Overall, the combination of multi-view image acquisition, advanced pose estimation, and ensemble learning enables accurate and practical clothing size recommendations.
 
-The main contributions of this paper include: (1) Development of a user-friendly interface to support the capture of consistent multi-view images; (2) Utilization of YOLOv11-based pose estimation to extract key body landmarks and reconstruction of 3D body measurements using height scaling; (3) Comparative evaluation of four machine learning algorithms—Logistic Regression, Random Forest, Support Vector Machine (SVM), and XGBoost—for clothing size classification; (4) Integration of estimated body measurements with a clothing size database to deliver personalized recommendations for online retail platforms.
+The main contributions of this paper include: (1) Development of a user-friendly interface to support the capture of consistent multi-view images; 
+(2) Utilization of YOLOv11-based pose estimation to extract key body landmarks and reconstruction of 3D body measurements using height scaling; 
+(3) Comparative evaluation of four machine learning algorithms: Logistic Regression, Random Forest, Support Vector Machine (SVM), and XGBoost for clothing size classification; 
+(4) Integration of estimated body measurements with a clothing size database to deliver personalized recommendations for online retail platforms.
 
 The rest of the paper includes: Section 2 presents a group of related works. Section 3 presents related theoretical foundations, such as the YOLOv11 model, the ensemble learning, including image capture, pose detection, and measurement estimation. Section 4 presents the proposed approach. Section 5 presents data, experimental results, evaluation, and comparison of results. Conclusion and development direction are presented in Section 6.
 
@@ -60,7 +72,7 @@ Early studies primarily focused on conventional measurement techniques or hardwa
 More recent works have shifted toward vision-based methods, leveraging object detection frameworks (software systems that locate objects like body parts in images ), 
     pose estimation models (algorithms that detect human body positions from photos), and machine learning algorithms to infer body dimensions from 2D images. 
 At the same time, the fashion industry has explored both 2D and 3D measurement strategies to improve size recommendation systems for online shopping. 
-This section reviews three main directions relevant to the proposed framework: YOLO-based detection and pose estimation (where YOLO stands for “You Only Look Once,” a popular real-time object detection method ), 
+This section reviews three main directions relevant to the proposed framework: YOLO-based detection and pose estimation (where YOLO stands for “You Only Look Once” a popular real-time object detection method ), 
     statistical and machine learning approaches, and clothing size estimation methods in fashion applications.
 \subsection{YOLO-Based Human Detection and Pose Estimation}
 
@@ -86,7 +98,7 @@ Image-based methods using convolutional neural networks \cite{ref10} combine bod
 On the other hand, 3D body scanning approaches \cite{ref11} provide high accuracy and body shape clustering, but the requirement for specialized scanning equipment limits their scalability for e-commerce platforms. 
 The hybrid approaches that integrate pose estimation with partial anthropometric data have also been explored, yet their accuracy often remains below practical standards required by large-scale online retailers. 
 Striking a balance between practicality, scalability, and measurement precision continues to be an open challenge in this field.
-Overall, previous research highlights the complementary strengths of YOLO-based detection frameworks, statistical modeling, and specialized clothing size estimation techniques. 
+Overall, previous research highlights the complementary strengths of YOLO based detection frameworks, statistical modeling, and specialized clothing size estimation techniques. 
 However, most methods remain limited either by reliance on expensive hardware, insufficient accuracy in 2D settings, or lack of integration between pose estimation and learning-based classification. 
 Addressing these gaps requires a unified framework that leverages advances in pose estimation models, such as YOLOv11, together with ensemble learning algorithms to deliver accurate, scalable, and accessible solutions for real-world clothing size recommendation.
 
@@ -100,10 +112,10 @@ Random Forest, in particular, is robust to noise and non-linearities, making it 
 
 \subsection{Core Definitions and Concepts}
 
-\textbf{Human Pose Detection} \cite{ref24} is a part of computer vision that involves recognizing and roughly locating the major joints of the body (e.g., shoulders, elbows, waist, etc.) from images or video streams. 
-The pose generation techniques, such as those implemented in YOLOv11, use convolutional neural networks (CNNs) to predict a set of heatmaps or keypoint maps, each corresponding to one anatomical landmark. 
-By training on large datasets of annotated human poses, the network learns to extract spatial features---like limb orientation, joint appearance, 
-    and body silhouette---and to output precise coordinate estimates for each joint in real time. These techniques are useful because:
+\textbf{Human Pose Detection} is a part of computer vision that involves recognizing and roughly locating the major joints of the body (e.g., shoulders, elbows, waist, etc.) from images or video streams \cite{ref24}. 
+The pose generation techniques, such as those implemented in YOLOv11, use convolutional neural networks (CNNs) \cite{ref25} to predict a set of heatmaps or keypoint maps, each corresponding to one anatomical landmark. 
+By training on large datasets of annotated human poses, the network learns to extract spatial features like limb orientation, joint appearance, 
+    and body silhouette and to output precise coordinate estimates for each joint in real time. These techniques are useful because:
 
 \medskip
 
@@ -122,12 +134,13 @@ By training on large datasets of annotated human poses, the network learns to ex
 \textbf{Personalization:} The clothing-size recommendation system, precise measurements (e.g., shoulder width, arm length) extracted from live video ensure that suggested sizes match each user's unique body proportions, reducing returns and improving customer satisfaction.
 
 
-\subsubsection{YOLOv11: } The YOLO model is a real-time object detection system using convolutional neural networks, known for its speed and efficiency on both high-end and mobile devices~\cite{ref5}. Although originally for object detection, YOLO can be adapted for tasks like human pose estimation. In our work, a YOLO variant is used to extract precise body measurements from a live camera stream to generate personalized clothing size recommendations.
+\subsubsection{YOLOv11: } The YOLOv11 model is a real-time object detection system using convolutional neural networks, known for its speed and efficiency on both high-end and mobile devices~\cite{ref5}. Although originally for object detection, YOLO can be adapted for tasks like human pose estimation. In our work, a YOLO variant is used to extract precise body measurements from a live camera stream to generate personalized clothing size recommendations.
 
-\subsubsection{Logistic Regression:} The logistic regression is a core statistical classification method that models the probability of a categorical outcome given one or more predictor variables. In this system, we use it to map continuous body measurements (e.g., shoulder width, waist circumference) 
+\subsubsection{Logistic Regression:} The logistic regression is a core statistical classification method that models the probability of a categorical outcome given one or more predictor variables \cite{ref7}. 
+In this system, we use it to map continuous body measurements (e.g., shoulder width, waist circumference) 
 into discrete clothing size categories (Small, Medium, Large, X Large, and XX Large).
 
-\textbf{Binary Logistic Function.} For the simplest case of two classes (e.g.\ "Medium" vs.\ "Not Medium"), the model assumes
+\textbf{Binary Logistic Function.} For the simplest case of two classes (e.g.\ "Medium" vs.\ "Not Medium"), the model assumes (formular 1):
 \begin{equation}
 P(Y = 1 \mid \mathbf{x}) = \sigma(z) = \frac{1}{1 + e^{-z}},
 \end{equation}
@@ -168,26 +181,28 @@ where $\lambda$ controls the strength of $L_{2}$ regularization to prevent overf
 \hspace*{2em} The intercept $\theta_{k0}$ shifts the model’s bias toward or away from class $k$ when all $x_i = 0$ (after normalization).
 
 
-In this system, the input $\mathbf{x}$ is the scaled set of body measurements produced by the YOLOv11, and the trained logistic model outputs—for each size category—the probability that the measurements belong to that category. We then recommend the size with maximum probability, optionally enforcing a minimum confidence threshold (e.g.\ 0.7) to prompt the user for retakes if the classification is uncertain.
+In this system, the input x is the scaled set of body measurements produced by the YOLOv11, and the trained logistic model outputs—for each 
+    size category—the probability that the measurements belong to that category. We then recommend the size with maximum probability, 
+    optionally enforcing a minimum confidence threshold (0.7) to prompt the user for retakes if the classification is uncertain.
 
 \subsubsection{Random Forest:}
 The Random Forest is an ensemble learning algorithm that builds a collection of decision trees and aggregates their predictions to improve generalization \cite{ref18}. 
 Each tree is trained on a bootstrap sample of the training data, and at each split only a random subset of features is considered. 
 The randomness reduces correlation between trees, leading to lower variance compared to a single decision tree. 
-The final prediction is obtained by majority voting across all trees for classification:
+The final prediction is obtained by majority voting across all trees for classification (formular 5):
 \begin{equation}
-\hat{y} = \mathrm{mode}\{h_{1}(\mathbf{x}), h_{2}(\mathbf{x}), \ldots, h_{T}(\mathbf{x})\},
+\hat{y} = \mathrm{mode}\{h_{1}(x), h_{2}(x), \ldots, h_{T}(x)\},
 \end{equation}
-where $h_{t}(\mathbf{x})$ is the class prediction of tree $t$, and $T$ is the total number of trees. 
+where $h_{t}(x)$ is the class prediction of tree $t$, and $T$ is the total number of trees. 
 Random Forests are robust to noise, can capture nonlinear feature interactions, and naturally handle multi-class classification. 
 In this context, the Random Forest provides a strong nonparametric baseline for mapping anthropometric features into clothing size categories.
 
-\subsubsection{Support Vector Machine (SVM):} The Support Vector Machine is a margin-based classifier that seeks a hyperplane separating classes with maximum margin. 
+\subsubsection{Support Vector Machine:} The Support Vector Machine is a margin-based classifier that seeks a hyperplane separating classes with maximum margin. 
 For linearly separable data \cite{ref19}, the decision function as formular (6):
 \begin{equation}
-f(\mathbf{x}) = \mathrm{sign}\big(\mathbf{w}^{T}\mathbf{x} + b\big),
+f(x) = \mathrm{sign}\big(w^{T}x + b\big),
 \end{equation}
-where $\mathbf{w}$ is the weight vector orthogonal to the hyperplane and $b$ is the bias. The optimization maximizes the margin subject to classification constraints. To handle nonlinearity, kernel functions $\kappa(\mathbf{x}_{i},\mathbf{x}_{j})$ map inputs into a higher-dimensional space, 
+where $w$ is the weight vector orthogonal to the hyperplane and $b$ is the bias. The optimization maximizes the margin subject to classification constraints. To handle nonlinearity, kernel functions $\kappa(x_{i},x_{j})$ map inputs into a higher-dimensional space, 
 allowing separation by a linear hyperplane there. 
 Common kernels include polynomial and radial basis function (RBF). For multi-class size classification, strategies such as one-vs-one (OvO) or one-vs-rest (OvR) are applied. SVMs are effective with high-dimensional data and small training sets, making them suitable for exploring the discriminative power of body measurements beyond logistic regression.
 
@@ -209,9 +224,9 @@ This approach enables the delivery of fast and reliable size recommendations.
 
 \subsection{User's size estimation}
 
-\subsubsection{Human key points detection}
+\subsubsection{Human key points detection:}
 The Human key points are detected using the YOLOv11 pretrained model, which is specifically designed for human pose estimation. 
-The model is designed to identify and localize key body parts, including the head, shoulders, elbows, wrists, hips, knees, and ankles, from 2D images or video frames. 
+The model is designed to identify and localize key body parts, including the head, shoulders, elbows, wrists, hips, knees, and ankles, from 2D images. 
 In this approach, YOLOv11 processes input images and returns the coordinates of key points after capturing two user images, including a front view and a side view. 
 These coordinates are essential for determining body posture, extracting body proportions, and calculating measurements for the clothing size recommendation system.
 \begin{figure}[htbp]
@@ -223,7 +238,7 @@ These coordinates are essential for determining body posture, extracting body pr
 
 The initial image that captured by the user's camera, then will be fed into the YOLOv11 model, go through several hidden layers to get the final result is the human key points.
 
-\subsubsection{Body size calculation}
+\subsubsection{Body size calculation:}
 After getting all the necessary key points, the length between some important key points, such as the left-shoulder point and the right-shoulder point, 
     is calculated to get the image distance, then the user's height is used as the scale to calculate the real length of the user’s shoulder. 
 We have the general equation for body part length:
@@ -272,9 +287,8 @@ Each model’s performance was evaluated using: Accuracy score on test set; 5-fo
     \label{fig:model_comparison}
 \end{figure}
 
-\newpage
 
-\subsubsection{Results and Model Selection}
+\subsubsection{Results and Model Selection:}
 
 The comparative analysis revealed significant differences in model performance:
 
@@ -288,8 +302,8 @@ The comparative analysis revealed significant differences in model performance:
         \midrule
         Logistic Regression & 97.50\% & 95.15\% & ±0.025 & 4 \\
         SVM & 97.50\% & 95.80\% & ±0.022 & 3 \\ 
-        XGBoost & 97.75\% & 96.20\% & ±0.018 & 2 \\ 
-        Random Forest & 97.50\% & 96.85\% & ±0.012 & 1 \\ 
+        Random Forest & 97.50\% & 96.85\% & ±0.012 & 2 \\ 
+        \textbf{XGBoost} & \textbf{97.75\%} & \textbf{96.20\%} & \textbf{±0.018} & \textbf{1} \\ 
         \bottomrule
     \end{tabular}
 \end{table}
@@ -318,27 +332,37 @@ A synthetic dataset consisting of 2,000 individual body measurements and their c
 \begin{table}[H]
 \centering
 \caption{Dataset distribution for model training and evaluation}
-\begin{tabular}{lcc}
-\toprule
-Size & Amount & Percentage \\
-\midrule
-S & 413 & 20.6\% \\
-M & 414 & 20.7\% \\
-L & 378 & 18.9\% \\
-XL & 414 & 20.7\% \\
-XXL & 381 & 19.1\% \\
-\bottomrule
+\setlength{\tabcolsep}{12pt} % Tăng khoảng cách giữa các cột
+\renewcommand{\arraystretch}{1.3} % Tăng khoảng cách giữa các hàng
+\begin{tabular}{ccccc}
+\hline
+\multirow{2}{*}{\textbf{Size}} & \multicolumn{2}{c}{\textbf{Training Dataset}} & \multicolumn{2}{c}{\textbf{Real Images Testing}} \\
+\cline{2-5}
+& \textbf{Amount} & \textbf{Percentage} & \textbf{Amount} & \textbf{Percentage} \\
+\hline\hline % Viền đôi để tách header
+S & 413 & 20.6\% & 10 & 20.0\% \\
+\hline
+M & 414 & 20.7\% & 10 & 20.0\% \\
+\hline
+L & 378 & 18.9\% & 10 & 20.0\% \\
+\hline
+XL & 414 & 20.7\% & 10 & 20.0\% \\
+\hline
+XXL & 381 & 19.1\% & 10 & 20.0\% \\
+\hline\hline % Viền đôi trước tổng
+\textbf{Total} & \textbf{2,000} & \textbf{100\%} & \textbf{50} & \textbf{100\%} \\
+\hline
 \end{tabular}
 \end{table}
-
 
 The full dataset was divided into training and testing subsets using a stratified split, with 80\% (1,600 samples) allocated for training and 20\% (400 samples) reserved for testing. 
 This stratification preserved the proportional representation of each size category across both subsets, enabling reliable performance evaluation on unseen data.
 
+In addition to the synthetic dataset evaluation, the system was validated using real-world images to assess practical performance. A collection of 50 real images was captured from actual users, with 10 images representing each size category (S, M, L, XL, XXL). These real-world test cases provided an opportunity to evaluate the complete pipeline, from YOLOv11-based pose detection and body measurement extraction to final size classification using the trained Random Forest model. The real images testing serves as a critical validation step to bridge the gap between synthetic data performance and real-world applicability, ensuring that the system maintains accuracy when deployed in practical e-commerce environments.
+
 All four models were trained with identical preprocessing steps, and their hyperparameters were optimized through grid search. 
 Preprocessing involved standard scaling for Logistic Regression and SVM, whereas Random Forest and XGBoost operated on raw features. 
 Model validation was conducted using stratified 5-fold cross-validation to ensure robustness.
-
 \subsection{Experiment Results, Cross-Validation, and Discussion}
 
 Random Forest demonstrated the most consistent performance across all evaluation metrics, achieving high precision, recall, and F1-scores. 
@@ -356,7 +380,7 @@ Moreover, the interpretability of Random Forest’s feature importance analysis 
 \subsection {Real-World Case Study Testing}
 To validate the practical applicability and robustness of the proposed system, we conducted tests on real-world subjects in a practical setting. This testing phase aimed to evaluate the end-to-end pipeline, from image capture and measurement extraction to the final size prediction by the Random Forest model. Two representative cases are presented in Figure \ref{fig:real_cases}.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{images/result2.png}
     \caption{Real-world testing scenarios with two users of different genders and body types.}
