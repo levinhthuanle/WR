@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 15:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 15:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -322,56 +322,11 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Citation `ref8' on page 1 undefined on input line 46.
-
-
-LaTeX Warning: Citation `ref2' on page 1 undefined on input line 48.
-
-
-
 [1
 
 {C:/Users/DELL/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Citation `ref2' on page 2 undefined on input line 51.
-
-
-
 [2]
-
-LaTeX Warning: Citation `ref3' on page 3 undefined on input line 68.
-
-
-LaTeX Warning: Citation `ref4' on page 3 undefined on input line 68.
-
-
-LaTeX Warning: Citation `ref5' on page 3 undefined on input line 69.
-
-
-LaTeX Warning: Citation `ref6' on page 3 undefined on input line 69.
-
-
-LaTeX Warning: Citation `ref21' on page 3 undefined on input line 70.
-
-
-LaTeX Warning: Citation `ref22' on page 3 undefined on input line 70.
-
-
-LaTeX Warning: Citation `ref7' on page 3 undefined on input line 78.
-
-
-LaTeX Warning: Citation `ref8' on page 3 undefined on input line 78.
-
-
-LaTeX Warning: Citation `ref9' on page 3 undefined on input line 79.
-
-
-LaTeX Warning: Citation `ref10' on page 3 undefined on input line 85.
-
-
-LaTeX Warning: Citation `ref11' on page 3 undefined on input line 86.
-
-
 
 [3]
 Overfull \hbox (1.29366pt too wide) in paragraph at lines 110--111
@@ -381,10 +336,6 @@ Overfull \hbox (1.29366pt too wide) in paragraph at lines 110--111
 
 
 [4]
-
-LaTeX Warning: Citation `ref5' on page 5 undefined on input line 125.
-
-
 Overfull \hbox (12.07188pt too wide) in paragraph at lines 130--131
 []\OT1/cmr/bx/n/10 Binary Lo-gis-tic Func-tion. \OT1/cmr/m/n/10 For the sim-plest case of two classes (e.g. "Medium"
  []
@@ -413,17 +364,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
 [5]
 
-LaTeX Warning: Citation `ref18' on page 6 undefined on input line 174.
-
-
-LaTeX Warning: Citation `ref19' on page 6 undefined on input line 186.
-
-
-
 [6]
-
-LaTeX Warning: Citation `ref20' on page 7 undefined on input line 194.
-
 <images/Yolo2.png, id=35, 1436.36626pt x 630.85687pt>
 File: images/Yolo2.png Graphic file (type png)
 <use images/Yolo2.png>
@@ -455,10 +396,6 @@ Overfull \hbox (4.33545pt too wide) in paragraph at lines 313--315
 
 [10]
 
-LaTeX Warning: Reference `fig:real_cases' on page 11 undefined on input line 359.
-
-
-
 [11]
 <images/result2.png, id=58, 1321.18594pt x 627.09282pt>
 File: images/result2.png Graphic file (type png)
@@ -481,24 +418,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  3348 strings out of 468133
  46597 string characters out of 5447550
- 459886 words of memory out of 5000000
+ 460028 words of memory out of 5000000
  31925 multiletter control sequences out of 15000+600000
  637397 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,1003b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,994b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (15 pages, 1835264 bytes).
+Output written on main.pdf (15 pages, 1834985 bytes).
 PDF statistics:
  148 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
