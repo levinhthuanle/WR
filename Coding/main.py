@@ -299,7 +299,7 @@ def main():
             # Interactive input
             image_path = input("📁 Enter image path (or press Enter for 'tests/thanh.jpg'): ").strip()
             if not image_path:
-                image_path = "tests/thanh.jpg"
+                image_path = "dataset/pig_1.jpg"
             
             real_height = float(input("📏 Enter real height of person (cm): "))
         
