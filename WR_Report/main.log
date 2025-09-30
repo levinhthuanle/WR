@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 12:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 13:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -392,17 +392,27 @@ Package pdftex.def Info: images/Yolo2.png  used on input line 210.
 <images/model_comparison.png, id=46, 1232.9262pt x 692.3466pt>
 File: images/model_comparison.png Graphic file (type png)
 <use images/model_comparison.png>
-Package pdftex.def Info: images/model_comparison.png  used on input line 262.
+Package pdftex.def Info: images/model_comparison.png  used on input line 258.
 (pdftex.def)             Requested size: 277.69987pt x 155.94029pt.
 
 
 [9 <./images/model_comparison.png>]
+Overfull \hbox (4.60657pt too wide) in paragraph at lines 300--302
+\OT1/cmr/m/n/10 Ryzen 7 6800HS CPU, 16GB RAM, and NVIDIA RTX 3050 GPU (12GB VRAM).
+ []
+
+
+Overfull \hbox (4.33545pt too wide) in paragraph at lines 300--302
+\OT1/cmr/m/n/10 The mod-els were im-ple-mented us-ing scikit-learn 1.3.0, XG-Boost 1.7.0, and Python
+ []
+
+
 
 [10]
 
-[11] (main.bbl
+[11]
 
-[12])
+[12] (main.bbl)
 
 [13] (main.aux)
  ***********
@@ -411,17 +421,17 @@ L3 programming layer <2025-08-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3337 strings out of 468133
- 46380 string characters out of 5447550
+ 3339 strings out of 468133
+ 46406 string characters out of 5447550
  457997 words of memory out of 5000000
- 31914 multiletter control sequences out of 15000+600000
- 637402 words of font info for 79 fonts, out of 8000000 for 9000
+ 31915 multiletter control sequences out of 15000+600000
+ 637737 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,1616b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx1000.pk> <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (13 pages, 762233 bytes).
+ 57i,8n,65p,994b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx1000.pk> <C:\Users\DELL\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (13 pages, 763529 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 150 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
