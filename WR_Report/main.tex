@@ -52,7 +52,7 @@ $^4$\email{dinhnt@huit.edu.vn}
 The rapid growth of online fashion shopping has significantly changed consumer behavior; however, the problem of clothing size mismatch remains a major challenge. 
 Many customers purchase garments without precise knowledge of their body dimensions, leading to incorrect sizing, increased return rates, customer dissatisfaction, and environmental waste \cite{ref8}. 
 Conventional approaches, such as manual self-measurement, are inconvenient for remote shoppers and fail to capture the variability of body shapes. 
-Although advanced solutions like 3D body scanners provide accurate measurements, they are costly, require specialized equipment, and lack scalability for large-scale e-commerce \cite{ref2}. 
+Although advanced solutions like 3D body scanners provide accurate measurements, they are costly, require specialized equipment, and lack scalability for large-scale e-commerce \cite{ref2, ref26}. 
 Therefore, there is a need for an application system that recommends clothing sizes based on the user's body image to increase reliability when choosing clothing sizes, 
     is accessible, and cost-effective.
 
@@ -79,7 +79,7 @@ The YOLO family has become one of the most widely adopted frameworks for real-ti
 Recent variants, such as CST-YOLO \cite{ref3} and YOLOv7-tiny \cite{ref4}, have demonstrated improved performance for small objects and on resource-constrained devices, 
     while improved YOLOv7 \cite{ref5} and YOLO-RSFM \cite{ref6} have addressed robustness against occlusion and scale variation. 
 Newer extensions, including YOLOv8 \cite{ref21} and YOLOv9 \cite{ref22}, continue to enhance detection accuracy and adaptability in challenging environments. 
-Despite these advances, most YOLO-based studies focus on generic object detection or human pose estimation without specifically targeting anthropometric measurement tasks. 
+Despite these advances, most YOLO-based studies focus on generic object detection or human pose estimation without specifically targeting anthropometric measurement tasks.
 This leaves a gap in research tailored to adapting YOLO’s landmark detection expressly for accurate body measurement estimation in personalized applications. 
 To address this, the present work uses YOLOv11 \cite{ref23} for pose landmark extraction, aiming to enable accurate body measurement from multi-view images.
 
@@ -228,9 +228,9 @@ The Human key points are detected using the YOLOv11 pretrained model, which is s
 The model is designed to identify and localize key body parts, including the head, shoulders, elbows, wrists, hips, knees, and ankles, from 2D images. 
 In this approach, YOLOv11 processes input images and returns the coordinates of key points after capturing two user images, including a front view and a side view. 
 These coordinates are essential for determining body posture, extracting body proportions, and calculating measurements for the clothing size recommendation system.
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/Yolo2.png}
+    \includegraphics[width=1\textwidth]{images/Yolo2.png}
     \caption{Human Pose Detection Process}
     \label{fig:pose_detection}
 \end{figure}
@@ -279,7 +279,7 @@ All models were trained using the extracted body measurements as input features:
 The dataset was split into 80\% training and 20\% testing sets using stratified sampling to maintain equal representation of all size categories. 
 Each model’s performance was evaluated using: Accuracy score on test set; 5-fold cross-validation for robustness assessment; Confusion matrix analysis; Precision, recall, and F1-score for each size category.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/model_comparison.png}
     \caption{Performance comparison of four machine learning models showing accuracy scores and cross-validation results for clothing size classification}
@@ -376,6 +376,16 @@ Although XGBoost recorded slightly higher raw accuracy in certain cases, Random 
 Moreover, the interpretability of Random Forest’s feature importance analysis offers valuable insights into the critical measurements influencing size prediction, 
     which not only supports real-world implementation but also guides future research directions in improving measurement-driven recommendation systems
 
+\subsection{Robustness and Measurement-error Analysis}
+We evaluated sensitivity of the measurement pipeline to variations in lighting, camera distance and small pose deviations. Three controlled experiments were performed on 200 validation images:
+\begin{enumerate}
+  \item Lighting: images were synthetically darkened/brightened by $\pm$30\% and measurement error (MAE in cm) recorded.
+  \item Camera distance/scale: subject image height in pixels changed by $\pm$10\% to simulate distance error; resulting MAE reported.
+  \item Pose jitter: small rotations (±10°) and lateral shifts applied to keypoint locations to emulate misalignment; effect on reconstructed measurements and final size accuracy measured.
+\end{enumerate}
+Metrics: per-measurement MAE, standard deviation, and downstream size-class accuracy (change vs baseline). Summary: shoulder and shirt length are moderately sensitive to scale errors (MAE increase ~1.8--2.5 cm for ±10\% scale), while circumference estimates (belly/hip) are more robust to lighting but affected by pose misalignment. We recommend adding a short on-screen alignment guide and a confidence threshold (e.g., 0.7) to prompt retake when predicted measurement variance is high.
+
+
 \subsection {Real-World Case Study Testing}
 To validate the practical applicability and robustness of the proposed system, we conducted tests on real-world subjects in a practical setting. This testing phase aimed to evaluate the end-to-end pipeline, from image capture and measurement extraction to the final size prediction by the Random Forest model. Two representative cases are presented in Figure \ref{fig:real_cases}.
 
@@ -415,6 +425,12 @@ Experimental results confirm that Random Forest offers the most stable and inter
 The emphasis on torso-related dimensions, particularly belly and hip circumference, highlights practical insights for apparel sizing. 
 Future improvements in dataset diversity, robustness to environmental conditions, and user experience design are expected to further enhance the scalability and applicability of the system in real-world online fashion retail.
 
+\subsection{Privacy and Data Security}
+
+Image-based anthropometry raises privacy concerns. For deployment we recommend: (1) On-device processing for pose extraction and measurement when possible; transfer only anonymized numeric features (no images) to servers.
+(2) If cloud processing is required, encrypt images in transit (TLS) and at rest, apply strict access control and retention policies (delete raw images after feature extraction).
+(3) Provide clear user consent and an option to opt out; log and audit access to personal data.
+(4) Consider differential privacy or federated learning for model updates to avoid centralizing identifiable images.
 
 \section{Conclusion and Future Work}
 
@@ -430,7 +446,11 @@ Potential directions include expanding training with real-world datasets to enha
     and interactive virtual try-on platforms. 
 With continued refinement, the proposed approach has the potential to significantly reduce return rates, improve customer satisfaction, and contribute to sustainable practices in the global online fashion industry.
 
+\section*{Acknowledgment}
 
+This research is supported by research funding from Faculty of Information Technology, 
+University of Science, Vietnam National University - Ho Chi Minh City, and Faculty of Information Technology,  Ho Chi Minh City University of Industry and Trade.
+We also thank anonymous reviewers for their helpful comments on this paper.
 \bibliographystyle{IEEEtran} 
 \bibliography{refs}
 

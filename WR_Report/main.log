@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  30 SEP 2025 20:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.18)  29 OCT 2025 18:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -338,15 +338,80 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 33
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 
+LaTeX Warning: Citation `ref8' on page 1 undefined on input line 53.
+
+
+LaTeX Warning: Citation `ref2' on page 1 undefined on input line 55.
+
+
+LaTeX Warning: Citation ` ref26' on page 1 undefined on input line 55.
+
+
+LaTeX Warning: Citation `ref2' on page 1 undefined on input line 59.
+
+
+
 [1
 
 {C:/Users/DELL/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{E:/MikTex/fonts/enc/dvips/base/8r.enc}]
 
+LaTeX Warning: Citation `ref3' on page 2 undefined on input line 79.
+
+
+LaTeX Warning: Citation `ref4' on page 2 undefined on input line 79.
+
+
+LaTeX Warning: Citation `ref5' on page 2 undefined on input line 80.
+
+
+LaTeX Warning: Citation `ref6' on page 2 undefined on input line 80.
+
+
+LaTeX Warning: Citation `ref21' on page 2 undefined on input line 81.
+
+
+LaTeX Warning: Citation `ref22' on page 2 undefined on input line 81.
+
+
+LaTeX Warning: Citation `ref23' on page 2 undefined on input line 84.
+
+
+
 [2]
+
+LaTeX Warning: Citation `ref7' on page 3 undefined on input line 89.
+
+
+LaTeX Warning: Citation `ref8' on page 3 undefined on input line 89.
+
+
+LaTeX Warning: Citation `ref9' on page 3 undefined on input line 90.
+
+
+LaTeX Warning: Citation `ref10' on page 3 undefined on input line 96.
+
+
+LaTeX Warning: Citation `ref11' on page 3 undefined on input line 97.
+
+
 
 [3]
 
+LaTeX Warning: Citation `ref24' on page 4 undefined on input line 114.
+
+
+LaTeX Warning: Citation `ref25' on page 4 undefined on input line 115.
+
+
+LaTeX Warning: Citation `ref5' on page 4 undefined on input line 136.
+
+
+
 [4]
+
+LaTeX Warning: Citation `ref7' on page 5 undefined on input line 138.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 149--152
 
  []
@@ -369,6 +434,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
 
 [5]
+
+LaTeX Warning: Citation `ref18' on page 6 undefined on input line 188.
+
+
+LaTeX Warning: Citation `ref19' on page 6 undefined on input line 200.
+
+
+LaTeX Warning: Citation `ref20' on page 6 undefined on input line 208.
+
+
 Overfull \hbox (4.33304pt too wide) in paragraph at lines 208--210
  \OT1/ptm/b/n/10 Ex-treme Gra-di-ent Boost-ing (XG-Boost):[] \OT1/ptm/m/n/10 The XG-Boost is a scal-able, high-performance
  []
@@ -380,62 +455,76 @@ Overfull \hbox (4.33304pt too wide) in paragraph at lines 208--210
 File: images/Yolo2.png Graphic file (type png)
 <use images/Yolo2.png>
 Package pdftex.def Info: images/Yolo2.png  used on input line 233.
-(pdftex.def)             Requested size: 208.27623pt x 91.46709pt.
+(pdftex.def)             Requested size: 347.12354pt x 152.45798pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 
 [7]
-<images/model_comparison.png, id=42, 1232.9262pt x 692.3466pt>
+
+[8 <./images/Yolo2.png>]
+<images/model_comparison.png, id=46, 1232.9262pt x 692.3466pt>
 File: images/model_comparison.png Graphic file (type png)
 <use images/model_comparison.png>
 Package pdftex.def Info: images/model_comparison.png  used on input line 284.
 (pdftex.def)             Requested size: 277.69987pt x 155.94029pt.
-
-
-[8 <./images/Yolo2.png>]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 302.
  (E:\MikTex\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
+
+[9 <./images/model_comparison.png>]
 Overfull \hbox (0.33286pt too wide) in paragraph at lines 316--317
 []\OT1/ptm/m/n/10 Natural han-dling of non-linear re-la-tion-ships be-tween an-thro-po-met-ric mea-sure-ments
  []
 
 
 
-[9 <./images/model_comparison.png>]
-
 [10]
-<images/result2.png, id=54, 1321.18594pt x 627.09282pt>
-File: images/result2.png Graphic file (type png)
-<use images/result2.png>
-Package pdftex.def Info: images/result2.png  used on input line 384.
-(pdftex.def)             Requested size: 347.12354pt x 164.76263pt.
-
 
 [11]
 
-[12 <./images/result2.png>] (main.bbl
+LaTeX Warning: Reference `fig:real_cases' on page 12 undefined on input line 390.
 
-[13])
+<images/result2.png, id=57, 1321.18594pt x 627.09282pt>
+File: images/result2.png Graphic file (type png)
+<use images/result2.png>
+Package pdftex.def Info: images/result2.png  used on input line 394.
+(pdftex.def)             Requested size: 347.12354pt x 164.76263pt.
 
-[14] (main.aux)
+
+[12 <./images/result2.png>]
+
+[13] (main.bbl
+
+[14])
+
+[15] (main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 3544 strings out of 468133
- 49592 string characters out of 5447550
- 459274 words of memory out of 5000000
- 32096 multiletter control sequences out of 15000+600000
+ 3546 strings out of 468133
+ 49616 string characters out of 5447550
+ 461121 words of memory out of 5000000
+ 32098 multiletter control sequences out of 15000+600000
  648829 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,994b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,1003b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/MikTex/fonts/type1/urw/courier/ucrr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmb8a.pfb><E:/MikTex/fonts/type1/urw/times/utmr8a.pfb><E:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (14 pages, 1806054 bytes).
+Output written on main.pdf (15 pages, 1809026 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
+ 144 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
